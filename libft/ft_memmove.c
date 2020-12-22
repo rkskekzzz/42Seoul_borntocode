@@ -10,3 +10,4 @@ void*	ft_memmove(void* dest, const void* src, size_t size)
 			*((char*)dest + size - 1 - i) = *((char*)src + size - 1 - i);
 	return (dest);
 }
+
