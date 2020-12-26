@@ -56,5 +56,21 @@ int main(void){
 	char lcpy[4] = "abc";
 	char lcpy2[10] = "zzzzzzzzz";
 	printf("\n%d", ft_strlcpy(lcpy2,lcpy,2));
-	printf("\n%d", strlcpy(lcpy2,lcpy,2));
+	//printf("\n%d", strcpy(lcpy2,lcpy));
+
+	printf("\n%lu", strchr("abcde", 'd'));
+	printf("\n%lu", ft_strchr("abcde", 'd'));
+
+	printf("\n%lu", strrchr("ababaaab", 'a'));
+	printf("\n%lu", ft_strrchr("ababaaab", 'a'));
+
+	//printf("\n%lu", strnstr("hello world","wor", 10));
+	printf("\n%lu", ft_strnstr("this","is", 4));
+	printf("\n%c", *ft_strnstr("this","is", 4));
+
+	printf("\n%d", strncmp("abcd", "abce", 4));
+	printf("\n%d", ft_strncmp("abcd", "abce", 4));
+
+	printf("\n%d", atoi("-101"));
+	printf("\n%d", ft_atoi("-101"));
 }

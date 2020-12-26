@@ -3,9 +3,5 @@
 
 void ft_bzero(void* dest, size_t size)
 {
-	size_t	i;
-
-	i = -1;
-	while (++i < size)
-		*((char*)dest + i) = 0;
+	ft_memset(dest, 0, size);
 }

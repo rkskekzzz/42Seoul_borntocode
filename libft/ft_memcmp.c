@@ -9,3 +9,4 @@ int		ft_memcmp(const void* ptr1, const void* ptr2, size_t size)
 		;
 	return (*((char*)ptr1 + i) - *((char*)ptr2 + i));
 }
+
