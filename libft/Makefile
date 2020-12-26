@@ -14,7 +14,6 @@ NAME					= libft.a
 
 SRCS					= ft_atoi.c \
 					  ft_bzero.c \
-					  ft_calloc.c \
 					  ft_isalnum.c \
 					  ft_isalpha.c \
 					  ft_isascii.c \
@@ -26,10 +25,7 @@ SRCS					= ft_atoi.c \
 					  ft_memcpy.c \
 					  ft_memmove.c \
 					  ft_memset.c \
-					  ft_split.c \
 					  ft_strchr.c \
-					  ft_strdup.c \
-					  ft_strjoin.c \
 					  ft_strlcat.c \
 					  ft_strlcpy.c \
 					  ft_strlen.c \
@@ -48,10 +44,6 @@ $(NAME)		:
 			ar rc $(NAME) $(OBJS)
 
 all	:	$(NAME)
-
-bonus	:	$(NAME)
-		gcc $(FLAGS) -c -I./
-		ar rc $(NAME)
 
 clean	:
 		rm -f $(OBJS)
