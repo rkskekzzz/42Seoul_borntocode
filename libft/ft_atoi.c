@@ -1,23 +1,25 @@
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int ft_isspace(char c)
 {
-	int		n;
-	int		sign;
-	char	*ptr;
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
+}
+
+int ft_atoi(const char *s)
+{
+	int sign;
+	long long res;
 
 	sign = 1;
-	n = 0;
-	ptr = (char*)str;
-	if(*ptr == '-')
-	{
-		sign = -1;
-		++ptr;
-	}
-	while (*ptr)
-	{
-		n += 10 * n + *ptr - '0';
-		++ptr;
-	}
-	return (n * sign);
+	res = 0;
+	while (ft_isspace(*s))
+		++s;
+	if (*s == '-' || *s == '+')
+		if (*s++ == '-')
+			sign = -1;
+	while (ft_isdigit(*s))
+		res = res * 10 + (*s++ - '0');
+	return (res * sign);
 }

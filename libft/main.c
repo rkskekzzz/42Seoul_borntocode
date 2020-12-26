@@ -39,7 +39,8 @@ int main(void){
 	if (c != NULL) printf("%c", *c);
 	else printf("NULL");
 	printf("%c", '\n');
-	c = (char*)memchr(s3, '4', 3);
+	c = (char*)memchr(s3, '4', 4);
+	printf("memchr : ");
 	if (c != NULL) printf("%c", *c);
 	else printf("NULL");
 
@@ -73,4 +74,7 @@ int main(void){
 
 	printf("\n%d", atoi("-101"));
 	printf("\n%d", ft_atoi("-101"));
+
+	printf("\n%c", ft_toupper('a'));
+	printf("\n%c", ft_tolower('A'));
 }
