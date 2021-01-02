@@ -6,7 +6,7 @@
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 12:08:01 by suhshin           #+#    #+#             */
-/*   Updated: 2021/01/02 09:11:30 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/01/02 15:16:20 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ static int	ft_isspace(char c)
 int			ft_atoi(const char *s)
 {
 	int			sign;
+	int			len;
 	long long	ret;
 	long long	tmp;
 
 	sign = 1;
 	ret = 0;
+	len = 0;
 	while (ft_isspace(*s))
 		++s;
 	if (*s == '-' || *s == '+')
@@ -33,7 +35,7 @@ int			ft_atoi(const char *s)
 	while (ft_isdigit(*s))
 	{
 		tmp = ret * 10 + (*s++ - '0');
-		if (tmp < ret)
+		if (++len > 19 || tmp < ret)
 			return (sign < 0 ? 0 : -1);
 		ret = tmp;
 	}

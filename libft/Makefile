@@ -6,7 +6,7 @@
 #    By: jseo <jseo@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/22 14:44:25 by jseo              #+#    #+#              #
-#    Updated: 2021/01/02 11:00:47 by suhshin          ###   ########.fr        #
+#    Updated: 2021/01/02 13:59:22 by suhshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,11 @@ BNS_SRCS				= ft_lstnew.c \
 					  ft_lstadd_front.c \
 					  ft_lstsize.c \
 					  ft_lstlast.c \
-					  ft_lstdelone.c
+					  ft_lstdelone.c \
+					  ft_lstclear.c \
+					  ft_lstadd_back.c \
+					  ft_lstiter.c \
+					  ft_lstmap.c
 
 OBJS					= $(SRCS:%.c=%.o)
 

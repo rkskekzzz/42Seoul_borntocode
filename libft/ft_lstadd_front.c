@@ -6,7 +6,7 @@
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 09:28:15 by suhshin           #+#    #+#             */
-/*   Updated: 2021/01/02 09:57:41 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/01/02 11:29:19 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (!new)
+	if (!lst || !new)
 		return ;
-	if (!lst)
-		ft_lstnew(new->content);
-	new->next = lst[0];
-	lst[0] = new;
+	new->next = *lst;
+	*lst = new;
 }
