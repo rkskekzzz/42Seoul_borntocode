@@ -1,15 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/31 10:37:55 by suhshin           #+#    #+#             */
+/*   Updated: 2020/12/31 12:05:55 by suhshin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void* ft_memchr(const void* dest, int ch, size_t size)
+void	*ft_memchr(const void *dest, int ch, size_t size)
 {
-	const unsigned char*	ptr;
+	size_t	i;
 
-	ptr = (const unsigned char*)dest;
-	while (size-- > 0)
-	{
-		if (*ptr == ch)
-			return ((void*)ptr);
-		++ptr;
-	}
+	i = -1;
+	while (++i < size)
+		if (*((unsigned char *)dest + i) == (unsigned char)ch)
+			return ((void *)dest + i);
 	return (NULL);
 }

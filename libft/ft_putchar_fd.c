@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/31 12:06:32 by suhshin           #+#    #+#             */
-/*   Updated: 2020/12/31 12:06:53 by suhshin          ###   ########.fr       */
+/*   Created: 2020/12/31 14:12:12 by suhshin           #+#    #+#             */
+/*   Updated: 2020/12/31 14:19:20 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libc.h"
 
-int	ft_isascii(int c)
+void	ft_putchar_fd(char c, int fd)
 {
-	return (c >= 0 && c <= 127);
+	write(fd, &c, 1);
 }

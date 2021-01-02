@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/31 12:06:32 by suhshin           #+#    #+#             */
-/*   Updated: 2020/12/31 12:06:53 by suhshin          ###   ########.fr       */
+/*   Created: 2021/01/02 09:57:55 by suhshin           #+#    #+#             */
+/*   Updated: 2021/01/02 10:01:46 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+int	ft_lstsize(t_list *lst)
 {
-	return (c >= 0 && c <= 127);
+	int	i;
+
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst)
+	{
+		lst = lst->next;
+		++i;
+	}
+	return (i);
 }

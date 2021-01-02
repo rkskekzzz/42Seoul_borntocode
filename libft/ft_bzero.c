@@ -1,7 +1,18 @@
-//42header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/31 12:12:39 by suhshin           #+#    #+#             */
+/*   Updated: 2020/12/31 12:12:44 by suhshin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void ft_bzero(void* dest, size_t size)
+void	ft_bzero(void *dest, size_t size)
 {
 	ft_memset(dest, 0, size);
 }

@@ -1,25 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/31 12:08:01 by suhshin           #+#    #+#             */
+/*   Updated: 2021/01/02 09:11:30 by suhshin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int ft_isspace(char c)
+static int	ft_isspace(char c)
 {
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
+	return ((c >= 9 && c <= 13) || c == 32);
 }
 
-int ft_atoi(const char *s)
+int			ft_atoi(const char *s)
 {
-	int sign;
-	long long res;
+	int			sign;
+	long long	ret;
+	long long	tmp;
 
 	sign = 1;
-	res = 0;
+	ret = 0;
 	while (ft_isspace(*s))
 		++s;
 	if (*s == '-' || *s == '+')
 		if (*s++ == '-')
 			sign = -1;
 	while (ft_isdigit(*s))
-		res = res * 10 + (*s++ - '0');
-	return (res * sign);
+	{
+		tmp = ret * 10 + (*s++ - '0');
+		if (tmp < ret)
+			return (sign < 0 ? 0 : -1);
+		ret = tmp;
+	}
+	return ((int)ret * sign);
 }
