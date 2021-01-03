@@ -6,7 +6,7 @@
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 12:08:01 by suhshin           #+#    #+#             */
-/*   Updated: 2021/01/02 15:16:20 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/01/02 16:57:39 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,10 @@ int			ft_atoi(const char *s)
 		ret = tmp;
 	}
 	return ((int)ret * sign);
+}
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+	printf("%d\n", atoi("21464736489"));
 }
