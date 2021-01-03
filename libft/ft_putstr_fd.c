@@ -6,7 +6,7 @@
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 14:26:24 by suhshin           #+#    #+#             */
-/*   Updated: 2021/01/02 09:13:18 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/01/03 11:11:51 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (s)
-		while (*s)
-			ft_putchar_fd(*s++, fd);
+	int	len;
+
+	if (!s)
+		return ;
+	len = ft_strlen(s);
+	write(fd, s, len);
 }
