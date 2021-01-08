@@ -1,6 +1,6 @@
 # 42Seoul_borntocode
 
-Hi i'm Suhyoung Shin!
+Hi i'm Suhyoung Shin!\n
 42 intra id : suhshin
 
 ## This is my code I made while studying at 42.
