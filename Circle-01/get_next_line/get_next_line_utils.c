@@ -12,6 +12,12 @@
 
 #include "get_next_line.h"
 
+void	gnl_free(char **str)
+{
+	free(*str);
+	*str = NULL;
+}
+
 size_t	gnl_strlen(char *str)
 {
 	size_t	i;
@@ -43,12 +49,14 @@ size_t	gnl_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (i);
 }
 
-char	*gnl_strldup(char *src, size_t l)
+char	*gnl_strdup(char *src)
 {
 	char	*dest;
+	size_t	len;
 
-	if (!(dest = (char *)malloc(l + 1)))
+	len = gnl_strlen(src);
+	if (!(dest = (char *)malloc(len + 1)))
 		return (NULL);
-	gnl_strlcpy(dest, src, l + 1);
+	gnl_strlcpy(dest, src, len + 1);
 	return ((char *)dest);
 }

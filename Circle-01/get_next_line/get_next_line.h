@@ -13,19 +13,24 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # include <unistd.h>
-# include <fcntl.h>
 # include <stdlib.h>
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 4096
+# endif
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
 # endif
 
+int		gnl_return_check(ssize_t read_size, char **backup, char **line);
 int			get_next_line(int fd, char **line);
 char*		gnl_strappend(char *str1, char *str2);
 int			gnl_check_new_line(char *line);
-int			gnl_strslice(char** backup, int i, char** line);
-char*		gnl_strldup(char *src, size_t l);
+int			gnl_strslice(char** backup, ssize_t i, char** line);
+char*		gnl_strdup(char *src);
 size_t		gnl_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		gnl_strlen(char *str);
+void	gnl_free(char **str);
 
 #endif
