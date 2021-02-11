@@ -14,24 +14,24 @@
 
 int get_next_line(int fd, char **line)
 {
-	char *buffer;
+	char *buf;
 	static char *backup;
 	ssize_t read_size;
 	ssize_t i;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || !line || !(buffer = (char *)malloc(BUFFER_SIZE + 1)))
+	if (fd < 0 || BUFFER_SIZE < 1 || !line || !(buf = (char *)malloc(BUFFER_SIZE + 1)))
 		return (-1);
-	while ((read_size = read(fd, buffer, BUFFER_SIZE)) > 0)
+	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
-		buffer[read_size] = '\0';
-		backup = gnl_strappend(backup, buffer);
+		buf[read_size] = '\0';
+		backup = gnl_strappend(backup, buf);
 		if ((i = gnl_check_new_line(backup)) >= 0)
 		{
-			gnl_free(&buffer);
+			gnl_free(&buf);
 			return (gnl_strslice(&backup, i, line));
 		}
 	}
-	gnl_free(&buffer);
+	gnl_free(&buf);
 	return (gnl_return_check(read_size, &backup, line));
 }
 
