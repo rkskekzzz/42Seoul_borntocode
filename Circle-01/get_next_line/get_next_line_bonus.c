@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:02:12 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/11 22:40:15 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/02/11 22:11:30 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		get_next_line(int fd, char **line)
 {
 	char		*buf;
-	static char	*backup;
+	static char	*backup[OPEN_MAX];
 	ssize_t		read_size;
 	ssize_t		i;
 
@@ -25,15 +25,15 @@ int		get_next_line(int fd, char **line)
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[read_size] = '\0';
-		backup = gnl_strappend(backup, buf);
-		if ((i = gnl_check_new_line(backup)) >= 0)
+		backup[fd] = gnl_strappend(backup[fd], buf);
+		if ((i = gnl_check_new_line(backup[fd])) >= 0)
 		{
 			gnl_free(&buf);
-			return (gnl_strslice(&backup, i, line));
+			return (gnl_strslice(&backup[fd], i, line));
 		}
 	}
 	gnl_free(&buf);
-	return (gnl_return_check(read_size, &backup, line));
+	return (gnl_return_check(read_size, &backup[fd], line));
 }
 
 int		gnl_return_check(ssize_t read_size, char **backup, char **line)
