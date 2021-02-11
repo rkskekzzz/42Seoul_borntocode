@@ -6,18 +6,18 @@
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:02:12 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/10 16:40:48 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/02/11 21:37:18 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
-	char *buf;
-	static char *backup;
-	ssize_t read_size;
-	ssize_t i;
+	char		*buf;
+	static char	*backup;
+	ssize_t		read_size;
+	ssize_t		i;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || !line || !(buf = (char *)malloc(BUFFER_SIZE + 1)))
 		return (-1);
@@ -35,9 +35,9 @@ int get_next_line(int fd, char **line)
 	return (gnl_return_check(read_size, &backup, line));
 }
 
-int gnl_return_check(ssize_t read_size, char **backup, char **line)
+int		gnl_return_check(ssize_t read_size, char **backup, char **line)
 {
-	ssize_t i;
+	ssize_t	i;
 
 	if (read_size == -1)
 		return (-1);
@@ -55,9 +55,9 @@ int gnl_return_check(ssize_t read_size, char **backup, char **line)
 	return (0);
 }
 
-int gnl_strslice(char **backup, ssize_t i, char **line)
+int		gnl_strslice(char **backup, ssize_t i, char **line)
 {
-	char *tmp_line;
+	char	*tmp_line;
 
 	if (!*backup)
 		return (0);
@@ -71,11 +71,11 @@ int gnl_strslice(char **backup, ssize_t i, char **line)
 	return (1);
 }
 
-char *gnl_strappend(char *str1, char *str2)
+char	*gnl_strappend(char *str1, char *str2)
 {
-	char *dest;
-	size_t s1;
-	size_t s2;
+	char	*dest;
+	size_t	s1;
+	size_t	s2;
 
 	if (!str1 && !str2)
 		return (NULL);
@@ -91,10 +91,10 @@ char *gnl_strappend(char *str1, char *str2)
 	return (dest);
 }
 
-int gnl_check_new_line(char *line)
+int		gnl_check_new_line(char *line)
 {
-	size_t len;
-	size_t i;
+	size_t	len;
+	size_t	i;
 
 	i = -1;
 	len = gnl_strlen(line);

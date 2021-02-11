@@ -6,7 +6,7 @@
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:03:52 by suhshin           #+#    #+#             */
-/*   Updated: 2021/01/27 14:04:07 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/02/11 21:37:28 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	gnl_strlcpy(char *dst, const char *src, size_t dstsize)
 	i = 0;
 	if (!src)
 		return (0);
-	if(dstsize)
+	if (dstsize)
 	{
 		while (i < dstsize - 1 && src[i])
 		{
