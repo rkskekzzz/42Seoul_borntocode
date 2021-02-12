@@ -6,7 +6,7 @@
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:02:12 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/11 22:40:15 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/02/12 19:23:32 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 int		get_next_line(int fd, char **line)
 {
 	char		*buf;
-	static char	*backup;
+	static char	*backup[OPEN_MAX];
 	ssize_t		read_size;
 	ssize_t		i;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || !line ||
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE < 1 || !line ||
 		!(buf = (char *)malloc(BUFFER_SIZE + 1)))
 		return (-1);
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[read_size] = '\0';
-		backup = gnl_strappend(backup, buf);
-		if ((i = gnl_check_new_line(backup)) >= 0)
+		backup[fd] = gnl_strappend(backup[fd], buf);
+		if ((i = gnl_check_new_line(backup[fd])) >= 0)
 		{
 			gnl_free(&buf);
-			return (gnl_strslice(&backup, i, line));
+			return (gnl_strslice(&backup[fd], i, line));
 		}
 	}
 	gnl_free(&buf);
-	return (gnl_return_check(read_size, &backup, line));
+	return (gnl_return_check(read_size, &backup[fd], line));
 }
 
 int		gnl_return_check(ssize_t read_size, char **backup, char **line)
@@ -51,7 +51,8 @@ int		gnl_return_check(ssize_t read_size, char **backup, char **line)
 	}
 	if ((i = gnl_check_new_line(*backup)) >= 0)
 		return (gnl_strslice(backup, i, line));
-	*line = gnl_strdup(*backup);
+	if (!(*line = gnl_strdup(*backup)))
+		return (-1);
 	gnl_free(backup);
 	return (0);
 }
@@ -60,13 +61,12 @@ int		gnl_strslice(char **backup, ssize_t i, char **line)
 {
 	char	*tmp_line;
 
-	if (!*backup)
-		return (0);
 	(*backup)[i] = '\0';
 	if (!(tmp_line = gnl_strdup(*backup)))
 		return (-1);
 	*line = tmp_line;
-	tmp_line = gnl_strdup(*backup + i + 1);
+	if (!(tmp_line = gnl_strdup(*backup + i + 1)))
+		return (-1);
 	gnl_free(backup);
 	*backup = tmp_line;
 	return (1);
@@ -92,15 +92,17 @@ char	*gnl_strappend(char *str1, char *str2)
 	return (dest);
 }
 
-int		gnl_check_new_line(char *line)
+int		gnl_check_new_line(char *backup)
 {
 	size_t	len;
 	size_t	i;
 
 	i = -1;
-	len = gnl_strlen(line);
+	if (!backup)
+		return (-1);
+	len = gnl_strlen(backup);
 	while (++i < len)
-		if (line[i] == '\n')
+		if (backup[i] == '\n')
 			return (i);
 	return (-1);
 }
