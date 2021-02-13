@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:02:12 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/12 21:59:33 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/02/12 19:23:32 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 int		get_next_line(int fd, char **line)
 {
@@ -19,7 +19,7 @@ int		get_next_line(int fd, char **line)
 	ssize_t		read_size;
 	ssize_t		i;
 
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE < 1 || !line ||
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE < 1 || !line ||
 		!(buf = (char *)malloc(BUFFER_SIZE + 1)))
 		return (-1);
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
@@ -45,14 +45,12 @@ int		gnl_return_check(ssize_t read_size, char **backup, char **line)
 	if (!*backup)
 	{
 		gnl_free(backup);
-		if (!(*line = gnl_strdup("")))
-			return (-1);
+		*line = gnl_strdup("");
 		return (0);
 	}
 	if ((i = gnl_check_new_line(*backup)) >= 0)
 		return (gnl_strslice(backup, i, line));
-	if (!(*line = gnl_strdup(*backup)))
-		return (-1);
+	*line = gnl_strdup(*backup);
 	gnl_free(backup);
 	return (0);
 }
@@ -62,11 +60,9 @@ int		gnl_strslice(char **backup, ssize_t i, char **line)
 	char	*tmp_line;
 
 	(*backup)[i] = '\0';
-	if (!(tmp_line = gnl_strdup(*backup)))
-		return (-1);
+	tmp_line = gnl_strdup(*backup);
 	*line = tmp_line;
-	if (!(tmp_line = gnl_strdup(*backup + i + 1)))
-		return (-1);
+	tmp_line = gnl_strdup(*backup + i + 1);
 	gnl_free(backup);
 	*backup = tmp_line;
 	return (1);
