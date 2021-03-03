@@ -30,14 +30,11 @@ typedef struct s_format{
 int ft_printf(const char* format, ...);
 int	pf_printf(const char *format, va_list ap);
 
-//utils
+//handler
 int pf_type_handler(const char* format, size_t *i, va_list ap, t_format *st);
 void pf_format_handler(const char* format, size_t *i, t_format *st);
 
-void pf_init_struct(t_format *st);
-int	pf_utils_atoi(const char *format, size_t *i);
-
-//handlers
+//handler_*
 int pf_type_handler_c(const char *format, char ch, t_format *st);
 // int pf_type_handler_s(const char *format, char ch);
 // int pf_type_handler_p(const char *format, char ch);
@@ -46,8 +43,12 @@ int pf_type_handler_c(const char *format, char ch, t_format *st);
 // int pf_type_handler_x(const char *format, char ch);
 // int pf_type_handler_xx(const char *format, char ch);
 
+//utils
+void pf_utils_init_struct(t_format *st);
+void pf_utils_print_rep(char c, int n);
+int	pf_utils_atoi(const char *format, size_t *i);
 
-//ismethoc
+//isfunc
 int istype(char ch);
 
 // for test function

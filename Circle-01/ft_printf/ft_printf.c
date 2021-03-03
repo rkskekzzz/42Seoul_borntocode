@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	ft_printf("%30c%c", 'a','b');
+	ft_printf("%-30c%c", 'a','b');
 	return (0);
 }
 
@@ -39,10 +39,9 @@ int		pf_printf(const char *format, va_list ap)
 
 	i = 0;
 	print_size = 0;
-	//printf("%s\n", format);
 	while (format[i] != '\0')
 	{
-		pf_init_struct(&st);
+		pf_utils_init_struct(&st);
 		if (format[i] == '%')
 		{
 			while (!istype(format[++i]))
