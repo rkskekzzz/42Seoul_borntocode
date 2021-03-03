@@ -12,49 +12,43 @@
 
 #include "ft_printf.h"
 
-int main(void)
+int pf_type_handler(const char* format, size_t *i, va_list ap)
 {
-	ft_printf("format%c%c", 'a','b');
+	if (format[*i] == 'c')
+		return (pf_type_handler_c(format, va_arg(ap, int)));
+	if (format[*i] == 's')
+		//return (pf_type_handler_c(format));
+	if (format[*i] == 'p')
+		//return (pf_type_handler_c(format));
+	if (format[*i] == 'd' || format[*i] == 'i')
+		//return (pf_type_handler_c(format));
+	if (format[*i] == 'u')
+		//return (pf_type_handler_c(format));
+	if (format[*i] == 'x')
+		//return (pf_type_handler_c(format));
+	if (format[*i] == 'X')
+		//return (pf_type_handler_c(format));
+	return (-1);
 	return (0);
 }
 
-int		ft_printf(const char* format, ...)
+void pf_format_handler(const char* format, size_t *i)
 {
-	int print_size;
-	va_list ap;
-
-	va_start(ap, format);
-	print_size = pf_printf(format, ap);
-	va_end(ap);
-	if (print_size < 0)
-		return (-1);
-	return (print_size);
+	if (format[*i] == '\0')
+		--i;
+	else if(format[*i] == '-')
+		++i;
+	else if(format[*i] != '.') // && isdigit libft
+		++i;
+	else if(format[*i] == '.')
+		++i;
+	else if(format[*i] == '.') // && isdigit libft
+		++i;
+	else
+		++i;
 }
 
-int		pf_printf(const char *format, va_list ap)
+void pf_init_struct(t_format *st)
 {
-	size_t i;
-	int print_size;
-	t_format st;
-
-	i = 0;
-	print_size = 0;
-	//printf("%s\n", format);
-	while (format[i] != '\0')
-	{
-		pf_init_struct(&st);
-		if (format[i] == '%')
-		{
-			while (!istype(format[++i]))
-				pf_format_handler(format, &i);
-			print_size += pf_type_handler(format, &i, ap);
-		}
-		else
-		{
-			write(1, &format[i], 1);
-			++print_size;
-		}
-		++i;
-	}
-	return (print_size);
+	memset(st, 0, sizeof(t_format)); // change to ft_memset
 }

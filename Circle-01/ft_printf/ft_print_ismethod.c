@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/02 10:46:09 by suhshin           #+#    #+#             */
-/*   Updated: 2021/01/02 10:48:03 by suhshin          ###   ########.fr       */
+/*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
+/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-t_list	*ft_lstlast(t_list *lst)
+//cspdiuxX
+int istype(char ch)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	return (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || ch == 'i' ||
+		ch == 'u' || ch == 'x' || ch == 'X');
 }
+
