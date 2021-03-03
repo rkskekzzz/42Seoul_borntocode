@@ -19,3 +19,8 @@ int istype(char ch)
 		ch == 'u' || ch == 'x' || ch == 'X');
 }
 
+// remove
+int ft_isdigit(char ch)
+{
+	return (ch >= '0' && ch <= '9');
+}
