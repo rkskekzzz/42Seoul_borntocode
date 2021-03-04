@@ -30,6 +30,7 @@ int pf_type_handler_s(char* str, t_format *st)
 
 char *ft_strldup(const char *src, int len)
 {
+	// 맥스만큼 할당후 lcpy memset
 	char	*dest;
 
 	if (len == 0 || len > ft_strlen(src))

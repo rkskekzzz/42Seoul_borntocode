@@ -37,7 +37,9 @@ void pf_format_handler(const char* format, size_t *i, va_list ap, t_format *st);
 
 //handler_*
 int pf_type_handler_c(char ch, t_format *st);
+
 int pf_type_handler_s(char *ch, t_format *st);
+char *ft_strldup(const char *src, int len);
 // int pf_type_handler_p(const char *format, char ch);
 // int pf_type_handler_di(const char *format, char ch);
 // int pf_type_handler_u(const char *format, char ch);
