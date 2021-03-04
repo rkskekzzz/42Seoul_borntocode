@@ -14,7 +14,22 @@
 
 int main(void)
 {
-	ft_printf("%-30c%c", 'a','b');
+	//ft_printf("%-010c%c", 'a','b');
+	// ft_printf("%c",'c');
+
+	char *a = "hello";
+	int a1,b,c,d;
+	printf("%5.0s",a);
+	// a1 = ft_printf("%-10s",a);
+	// write(1, "\n", 1);
+	// b = ft_printf("%3s",a);
+	// write(1, "\n", 1);
+	// c = ft_printf("%02147483649s",a);
+	// write(1, "\n", 1);
+	// d = ft_printf("%-010s",a);
+	// write(1, "\n", 1);
+	// //ft_printf("%03s");
+	// printf("%d,%d,%d,%d\n",a1,b,c,d);
 	return (0);
 }
 
@@ -44,7 +59,7 @@ int		pf_printf(const char *format, va_list ap)
 		pf_utils_init_struct(&st);
 		if (format[i] == '%')
 		{
-			while (!isformat(format[++i]))
+			while (!istype(format[++i]))
 				pf_format_handler(format, &i, ap, &st);
 			if (istype(format[i]))
 				print_size += pf_type_handler(format, &i, ap, &st);

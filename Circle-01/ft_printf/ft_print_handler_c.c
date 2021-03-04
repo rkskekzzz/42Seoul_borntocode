@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int pf_type_handler_c(const char* format, char ch, t_format *st)
+int pf_type_handler_c(char ch, t_format *st)
 {
 
 	if (st->width > 1)
@@ -20,11 +20,11 @@ int pf_type_handler_c(const char* format, char ch, t_format *st)
 		if (st->minus == 1)
 		{
 			write(1, &ch, 1);
-			pf_utils_print_rep(' ', st->width - 1);
+			pf_utils_print_rep(pf_utils_width_char(st), st->width - 1);
 		}
 		else
 		{
-			pf_utils_print_rep(' ', st->width - 1);
+			pf_utils_print_rep(pf_utils_width_char(st), st->width - 1);
 			write(1, &ch, 1);
 		}
 		return (st->width);

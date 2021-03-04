@@ -15,9 +15,9 @@
 int pf_type_handler(const char* format, size_t *i, va_list ap, t_format *st)
 {
 	if (format[*i] == 'c')
-		return (pf_type_handler_c(format, va_arg(ap, int), st));
+		return (pf_type_handler_c(va_arg(ap, int), st));
 	if (format[*i] == 's')
-		return (pf_type_handler_s(format, va_arg(ap, int), st));
+	//	return (pf_type_handler_s(va_arg(ap, char*), st));
 	if (format[*i] == 'p')
 		//return (pf_type_handler_c(format));
 	if (format[*i] == 'd' || format[*i] == 'i')

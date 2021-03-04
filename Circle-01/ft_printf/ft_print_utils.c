@@ -53,6 +53,15 @@ void pf_utils_print_rep(char c, int n)
 	}
 }
 
+char *pf_utils_fill_char(t_format *st)
+{
+
+	if (st->zero == 1 && st->minus != 1)
+		return '0';
+	else
+		return ' ';
+}
+
 // remove
 void pf_print_struct(t_format *st)
 {
