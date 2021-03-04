@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Created: 2021/01/02 13:53:33 by suhshin           #+#    #+#             */
+/*   Updated: 2021/01/08 14:43:57 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int pf_type_handler_c(const char* format, char ch, t_format *st)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
+	t_list	*new;
+	t_list	*tmp;
+	t_list	*ptr;
 
-	if (st->width > 1)
+	tmp = NULL;
+	if (!lst || !(new = ft_lstnew(f(lst->content))))
+		return (NULL);
+	ptr = new;
+	lst = lst->next;
+	while (lst)
 	{
-		if (st->minus == 1)
+		if (!(tmp = ft_lstnew(f(lst->content))))
 		{
-			write(1, &ch, 1);
-			pf_utils_print_rep(' ', st->width - 1);
+			ft_lstclear(&new, del);
+			return (NULL);
 		}
-		else
-		{
-			pf_utils_print_rep(' ', st->width - 1);
-			write(1, &ch, 1);
-		}
-		return (st->width);
+		ptr->next = tmp;
+		ptr = ptr->next;
+		lst = lst->next;
 	}
-	write(1, &ch, 1);
-	return (1);
+	return (new);
 }

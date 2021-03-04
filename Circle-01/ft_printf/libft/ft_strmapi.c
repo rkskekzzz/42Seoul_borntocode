@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Created: 2020/12/31 14:28:33 by suhshin           #+#    #+#             */
+/*   Updated: 2020/12/31 19:15:49 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int pf_type_handler_c(const char* format, char ch, t_format *st)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
+	char	*buf;
+	size_t	i;
+	size_t	len;
 
-	if (st->width > 1)
-	{
-		if (st->minus == 1)
-		{
-			write(1, &ch, 1);
-			pf_utils_print_rep(' ', st->width - 1);
-		}
-		else
-		{
-			pf_utils_print_rep(' ', st->width - 1);
-			write(1, &ch, 1);
-		}
-		return (st->width);
-	}
-	write(1, &ch, 1);
-	return (1);
+	if (!s || !f)
+		return (NULL);
+	len = ft_strlen(s);
+	if (!(buf = (char *)malloc(len + 1)))
+		return (NULL);
+	i = -1;
+	while (*(++i + s))
+		*(buf + i) = f(i, *(s + i));
+	buf[i] = '\0';
+	return (buf);
 }

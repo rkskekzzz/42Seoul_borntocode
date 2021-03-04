@@ -14,29 +14,29 @@
 
 void pf_utils_init_struct(t_format *st)
 {
-	memset(st, 0, sizeof(t_format)); // change to ft_memset
+	ft_memset(st, 0, sizeof(t_format)); // change to ft_memset
 }
 
 int	pf_utils_atoi(const char *format, size_t *i)
 {
 	long long	ret;
 	long long	tmp;
-	int			of_cnt;
+	int			is_of;
 
 	ret = 0;
-	of_cnt = 0;
+	is_of = 0;
 	while (ft_isdigit(format[*i]))
 	{
 		tmp = ret * 10 + (format[*i] - '0');
 		if ((((1 << 31) & tmp) ^ ((1 << 31) & ret)) == 0)
-			of_cnt++;
+			is_of = 1;
 		ret = tmp;
 		++(*i);
 	}
 	--(*i);
-	if (of_cnt >= 1 && ret >= 2147483647)
+	if (is_of && ret >= 2147483647)
 		return (-1);
-	if (of_cnt >= 1 && ret < 0)
+	if (is_of && ret < 0)
 		return (0);
 	return ((int)ret);
 }

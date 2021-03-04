@@ -15,12 +15,6 @@
 //cspdiuxX
 int istype(char ch)
 {
-	return (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || ch == 'i' ||
-		ch == 'u' || ch == 'x' || ch == 'X');
-}
-
-// remove
-int ft_isdigit(char ch)
-{
-	return (ch >= '0' && ch <= '9');
+	return (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || ch == 'i' || \
+		ch == 'u' || ch == 'x' || ch == 'X' || ch == '%');
 }

@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Created: 2021/01/02 09:57:55 by suhshin           #+#    #+#             */
+/*   Updated: 2021/01/02 10:01:46 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int pf_type_handler_c(const char* format, char ch, t_format *st)
+int	ft_lstsize(t_list *lst)
 {
+	int	i;
 
-	if (st->width > 1)
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst)
 	{
-		if (st->minus == 1)
-		{
-			write(1, &ch, 1);
-			pf_utils_print_rep(' ', st->width - 1);
-		}
-		else
-		{
-			pf_utils_print_rep(' ', st->width - 1);
-			write(1, &ch, 1);
-		}
-		return (st->width);
+		lst = lst->next;
+		++i;
 	}
-	write(1, &ch, 1);
-	return (1);
+	return (i);
 }

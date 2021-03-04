@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Created: 2021/01/02 11:34:10 by suhshin           #+#    #+#             */
+/*   Updated: 2021/01/02 11:41:55 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int pf_type_handler_c(const char* format, char ch, t_format *st)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
+	t_list	*tmp;
 
-	if (st->width > 1)
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+		*lst = new;
+	else
 	{
-		if (st->minus == 1)
-		{
-			write(1, &ch, 1);
-			pf_utils_print_rep(' ', st->width - 1);
-		}
-		else
-		{
-			pf_utils_print_rep(' ', st->width - 1);
-			write(1, &ch, 1);
-		}
-		return (st->width);
+		tmp = ft_lstlast(*lst);
+		tmp->next = new;
 	}
-	write(1, &ch, 1);
-	return (1);
 }

@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Created: 2020/12/31 12:06:11 by suhshin           #+#    #+#             */
+/*   Updated: 2020/12/31 12:06:15 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int pf_type_handler_c(const char* format, char ch, t_format *st)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-
-	if (st->width > 1)
+	while (*s1 && *s2 && n && (*s1 == *s2))
 	{
-		if (st->minus == 1)
-		{
-			write(1, &ch, 1);
-			pf_utils_print_rep(' ', st->width - 1);
-		}
-		else
-		{
-			pf_utils_print_rep(' ', st->width - 1);
-			write(1, &ch, 1);
-		}
-		return (st->width);
+		++s1;
+		++s2;
+		--n;
 	}
-	write(1, &ch, 1);
-	return (1);
+	if (n == 0)
+		return (0);
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

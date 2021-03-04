@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Created: 2020/12/31 12:14:44 by suhshin           #+#    #+#             */
+/*   Updated: 2020/12/31 17:44:25 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int pf_type_handler_c(const char* format, char ch, t_format *st)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
+	size_t	i;
 
-	if (st->width > 1)
+	i = 0;
+	if (!src)
+		return (0);
+	if (dstsize)
 	{
-		if (st->minus == 1)
+		while (i < dstsize - 1 && src[i])
 		{
-			write(1, &ch, 1);
-			pf_utils_print_rep(' ', st->width - 1);
+			dst[i] = src[i];
+			++i;
 		}
-		else
-		{
-			pf_utils_print_rep(' ', st->width - 1);
-			write(1, &ch, 1);
-		}
-		return (st->width);
+		dst[i] = '\0';
 	}
-	write(1, &ch, 1);
-	return (1);
+	while (src[i])
+		++i;
+	return (i);
 }

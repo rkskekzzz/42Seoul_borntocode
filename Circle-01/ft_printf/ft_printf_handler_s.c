@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int pf_type_handler_c(const char* format, char ch, t_format *st)
+int pf_type_handler_s(const char* format, char* ch, t_format *st)
 {
 
 	if (st->width > 1)

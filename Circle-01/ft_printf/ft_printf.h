@@ -15,7 +15,7 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-
+# include "libft/libft.h"
 // for test header
 # include <stdio.h>
 # include <string.h>
@@ -32,11 +32,11 @@ int	pf_printf(const char *format, va_list ap);
 
 //handler
 int pf_type_handler(const char* format, size_t *i, va_list ap, t_format *st);
-void pf_format_handler(const char* format, size_t *i, t_format *st);
+void pf_format_handler(const char* format, size_t *i, va_list ap, t_format *st);
 
 //handler_*
 int pf_type_handler_c(const char *format, char ch, t_format *st);
-// int pf_type_handler_s(const char *format, char ch);
+int pf_type_handler_s(const char *format, char *ch, t_format *st);
 // int pf_type_handler_p(const char *format, char ch);
 // int pf_type_handler_di(const char *format, char ch);
 // int pf_type_handler_u(const char *format, char ch);
@@ -53,6 +53,5 @@ int istype(char ch);
 
 // for test function
 void pf_print_struct(t_format *st);
-int ft_isdigit(char ch);
 
 #endif

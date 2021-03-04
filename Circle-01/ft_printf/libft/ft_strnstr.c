@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Created: 2020/12/31 12:07:52 by suhshin           #+#    #+#             */
+/*   Updated: 2020/12/31 12:07:54 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int pf_type_handler_c(const char* format, char ch, t_format *st)
+char	*ft_strnstr(const char *s1, const char *set, size_t n)
 {
+	size_t	len;
 
-	if (st->width > 1)
+	len = ft_strlen(set);
+	if (!*set)
+		return ((char *)s1);
+	while (*s1 && n-- >= len)
 	{
-		if (st->minus == 1)
-		{
-			write(1, &ch, 1);
-			pf_utils_print_rep(' ', st->width - 1);
-		}
-		else
-		{
-			pf_utils_print_rep(' ', st->width - 1);
-			write(1, &ch, 1);
-		}
-		return (st->width);
+		if (*s1 == *set && !ft_memcmp(s1, set, len))
+			return ((char *)s1);
+		++s1;
 	}
-	write(1, &ch, 1);
-	return (1);
+	return (NULL);
 }

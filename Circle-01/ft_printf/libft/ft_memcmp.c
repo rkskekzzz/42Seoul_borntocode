@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Created: 2020/12/31 10:41:31 by suhshin           #+#    #+#             */
+/*   Updated: 2020/12/31 12:20:01 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int pf_type_handler_c(const char* format, char ch, t_format *st)
+int	ft_memcmp(const void *s1, const void *s2, size_t size)
 {
+	size_t	i;
 
-	if (st->width > 1)
-	{
-		if (st->minus == 1)
-		{
-			write(1, &ch, 1);
-			pf_utils_print_rep(' ', st->width - 1);
-		}
-		else
-		{
-			pf_utils_print_rep(' ', st->width - 1);
-			write(1, &ch, 1);
-		}
-		return (st->width);
-	}
-	write(1, &ch, 1);
-	return (1);
+	i = -1;
+	while (++i < size)
+		if ((*((unsigned char *)s1 + i) != *((unsigned char *)s2 + i)))
+			return (*((unsigned char *)s1 + i) - *((unsigned char *)s2 + i));
+	return (0);
 }
