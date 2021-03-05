@@ -14,6 +14,9 @@
 
 int pf_type_handler_p(char *ch, t_format *st)
 {
+	int len;
 
-	return (0);
+	len  = pf_max(strlen(ch), st->width);
+	// 처리
+	return (len);
 }
