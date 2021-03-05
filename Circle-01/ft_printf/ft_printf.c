@@ -17,19 +17,21 @@ int main(void)
 	//ft_printf("%-010c%c", 'a','b');
 	// ft_printf("%c",'c');
 
-	char *a = "hello";
+	char *a = NULL;
 	int a1,b,c,d;
-	printf("%5.0s",a);
-	// a1 = ft_printf("%-10s",a);
-	// write(1, "\n", 1);
-	// b = ft_printf("%3s",a);
-	// write(1, "\n", 1);
-	// c = ft_printf("%02147483649s",a);
-	// write(1, "\n", 1);
-	// d = ft_printf("%-010s",a);
-	// write(1, "\n", 1);
-	// //ft_printf("%03s");
-	// printf("%d,%d,%d,%d\n",a1,b,c,d);
+	/**  hancler c **/
+//	printf("%-7.3s\n","hello");
+//	ft_printf("%7.3s","hello");
+	/**  hancler s **/
+	b = printf("%7s\n",a);
+	//c = ft_printf("%7.3s",a);
+	/**  hancler pc **/
+//	printf("%%\n");
+//	ft_printf("%%");
+	/**  hancler p **/
+//	printf("%-14p\n", "hello");
+//	ft_printf("%p", "hello");
+	printf("\nb : %d c : %d", b, c);
 	return (0);
 }
 

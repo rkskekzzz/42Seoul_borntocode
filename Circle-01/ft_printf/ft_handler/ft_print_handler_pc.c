@@ -10,18 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-int pf_max(int a, int b)
+int pf_type_handler_pc(void)
 {
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-int pf_min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
+	ft_putchar_fd('%', 1);
+	return (1);
 }

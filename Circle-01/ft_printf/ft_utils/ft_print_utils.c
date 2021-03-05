@@ -10,35 +10,61 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-int pf_type_handler_s(char* str, t_format *st)
+void pf_utils_init_struct(t_format *st)
 {
-	char* ret;
-	int len;
-
-	len = ft_strlen(str);
-	if (!str)
-		ft_strdup("(null)");
-	if (st->width == -1)
-		return (-1);
-	if (st->dot == 0)
-		st->pre = len;
-	if (ret = strldup(str, pf_max(len, st->width), pf_min(len), st->pre)))
-		return (-1);
-	ft_putstr_fd(ret, 1);
-	return (ft_strlen(ret));
+	ft_memset(st, 0, sizeof(t_format)); // change to ft_memset
 }
 
-char *ft_strldup(const char *src, int wid, int pre)
+int	pf_utils_atoi(const char *format, size_t *i)
 {
-	// minus옵션 처리@@!
-	char	*dest;
+	long long	ret;
+	long long	tmp;
+	int			is_of;
 
-	if (!(dest = (char *)malloc(wid + 1)))
-		return (NULL);
-	ft_strlcpy(dest, src, pre + 1);
-	ft_memset(dest + pre, 32, wid - pre);
-	dest[wid] = '\0';
-	return ((char *)dest);
+	ret = 0;
+	is_of = 0;
+	while (ft_isdigit(format[*i]))
+	{
+		tmp = ret * 10 + (format[*i] - '0');
+		if ((((1 << 31) & tmp) ^ ((1 << 31) & ret)) == 0)
+			is_of = 1;
+		ret = tmp;
+		++(*i);
+	}
+	--(*i);
+	if (is_of && ret >= 2147483647)
+		return (-1);
+	if (is_of && ret < 0)
+		return (0);
+	return ((int)ret);
+}
+
+void pf_utils_print_rep(char c, int n)
+{
+	int i;
+
+	i = 0;
+	while (i < n)
+	{
+		write(1, &c, 1);
+		++i;
+	}
+}
+
+char pf_utils_width_char(t_format *st)
+{
+	if (st->zero == 1 && st->minus != 1)
+		return '0';
+	else
+		return ' ';
+}
+
+// remove
+void pf_print_struct(t_format *st)
+{
+	printf("minus : %d\n", st->minus);
+	printf("zero : %d\n", (*st).zero);
+	printf("width : %d\n", (*st).width);
 }

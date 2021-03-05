@@ -10,11 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-//cspdiuxX
-int istype(char ch)
+int pf_max(int a, int b)
 {
-	return (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || ch == 'i' || \
-		ch == 'u' || ch == 'x' || ch == 'X' || ch == '%');
+	if (a >= b)
+		return (a);
+	return (b);
+}
+
+int pf_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
 }
