@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_utils_xtox.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/03/10 15:28:18 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char			*pf_utils_itoa(int num)
 	int		sign;
 	char	*ret;
 
-	len = pf_utils_ilen(num);
+	len = pf_utils_numlen(num, 10);
 	if (!(ret = (char *)malloc(len + 1)))
 		return (NULL);
 	i = 0;
@@ -62,29 +62,22 @@ char			*pf_utils_itoa(int num)
 	return (ret);
 }
 
-char* pf_utils_itoa_16_base(long long num, const char * hexbase)
+char* pf_utils_untoa_16_base(unsigned long long num, const char * base, int bs)
 {
-	int		sign;
 	int		i;
 	int		len;
 	char	*ret;
 
 	if (num == 0)
 		return ("");
-	len = pf_utils_ulllen(num);
+	len = pf_utils_numlen(num, bs);
 	if (!(ret = (char *)malloc(len + 1)))
 		return (NULL);
 	i = 0;
-	sign = 1;
-	if(num < 0)
+	while (++i <= len)
 	{
-		sign = 0;
-		ret[0] = '-';
-	}
-	while (++i < len + sign)
-	{
-		ret[len - i] = hexbase[pf_utils_abs(num % 16)];
-		num /= 16;
+		ret[len - i] = base[pf_utils_abs(num % bs)];
+		num /= bs;
 	}
 	ret[len] = '\0';
 	return (ret);

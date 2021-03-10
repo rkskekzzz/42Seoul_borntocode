@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft/libft.h"
+
 // for test header
 # include <stdio.h>
 # include <string.h>
@@ -49,7 +49,7 @@ int pf_type_handler_p(unsigned long long ull, t_format *st);
 //handler_di
 int pf_type_handler_di(int num, t_format *st);
 //handler_u
-
+int pf_type_handler_u(unsigned int num, t_format *st);
 //handler_x & X
 int pf_type_handler_x(unsigned long long ull, t_format *st, const char * hb);
 //handler_pc
@@ -59,12 +59,12 @@ int pf_type_handler_pc(void);
 void pf_utils_init_struct(t_format *st);
 void pf_utils_print_rep(char c, int n);
 char pf_utils_width_char(t_format *st);
-char* pf_utils_strrev(char* str);
+
 
 //utils_xtox
 int	pf_utils_atoi(const char *format, size_t *i);
 char* pf_utils_itoa(int num);
-char* pf_utils_itoa_16_base(long long num, const char * hexbase);
+char* pf_utils_untoa_16_base(unsigned long long num, const char * base, int bs);
 
 
 // utils_ isfunc
@@ -74,8 +74,7 @@ int	pf_utils_isdigit(char ch);
 // utils_cal
 int pf_max(int a, int b);
 int pf_min(int a, int b);
-int pf_utils_ulllen(long long ull);
-int pf_utils_ilen(long long num);
+int pf_utils_numlen(long long num, int base);
 long long	pf_utils_abs(long long n);
 
 // utils_string

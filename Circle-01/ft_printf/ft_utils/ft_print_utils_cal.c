@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_utils_cal.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/03/10 15:27:52 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,17 @@ int pf_min(int a, int b)
 	return (b);
 }
 
-int pf_utils_ulllen(long long num)
+int pf_utils_numlen(long long num, int base)
 {
 	size_t	ret;
 
 	ret = 1;
 	if (num < 0)
+	{
 		++ret;
-	num = pf_utils_abs(num);
-	while ((num /= 16) > 0)
-		++ret;
-	return (ret);
-}
-
-int pf_utils_ilen(long long num)
-{
-	size_t	ret;
-
-	ret = 1;
-	if (num < 0)
-		++ret;
-	num = pf_utils_abs(num);
-	while ((num /= 10) > 0)
+		num *= -1;
+	}
+	while ((num /= base) > 0)
 		++ret;
 	return (ret);
 }

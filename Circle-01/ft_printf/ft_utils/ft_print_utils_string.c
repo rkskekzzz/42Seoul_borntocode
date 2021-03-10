@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_utils_string.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/03/10 15:28:11 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ char	*pf_utils_strdup(const char *src)
 	char	*dest;
 	size_t	len;
 
-	len = ft_strlen(src);
+	len = pf_utils_strlen(src);
 	if (!(dest = (char *)malloc(len + 1)))
 		return (NULL);
-	ft_strlcpy(dest, src, len + 1);
+	pf_utils_strlcpy(dest, src, len + 1);
 	return ((char *)dest);
 }
 

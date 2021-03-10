@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/03/10 15:28:31 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ int pf_type_handler(const char *format, size_t *i, va_list ap, t_format *st)
 	if (format[*i] == 'd' || format[*i] == 'i')
 		return (pf_type_handler_di(va_arg(ap, int), st));
 	if (format[*i] == 'u')
-		;
-		//return (pf_type_handler_c(format));
+		return (pf_type_handler_u(va_arg(ap, unsigned int), st));
 	if (format[*i] == 'x')
-		return (pf_type_handler_x(va_arg(ap, long long), st, HEXBASE));
+		return (pf_type_handler_x(va_arg(ap, unsigned long long), st, HEXBASE));
 	if (format[*i] == 'X')
-		return (pf_type_handler_x(va_arg(ap, long long), st, HEXBASEL));
+		return (pf_type_handler_x(va_arg(ap, unsigned long long), st, HEXBASEL));
 	if (format[*i] == '%')
 		return (pf_type_handler_pc());
 	return (0);

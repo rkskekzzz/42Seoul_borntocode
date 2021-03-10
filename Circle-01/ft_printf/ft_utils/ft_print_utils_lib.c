@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_utils_lib.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/03/10 15:28:05 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	pf_utils_putstr(char *s, int fd)
 	len = pf_utils_strlen(s);
 	write(fd, s, len);
 }
+
 void	pf_utils_putchar(char c, int fd)
 {
 	write(fd, &c, 1);

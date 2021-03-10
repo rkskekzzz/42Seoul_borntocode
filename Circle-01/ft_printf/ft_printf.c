@@ -6,7 +6,7 @@
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/03/10 15:27:33 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ int main(void)
 	ft_printf("make : %.p", NULL);
 	printf("\nreal : %20p\n", &k);
 	ft_printf("make : %20p", &k);
-	printf("\nreal : %X\n", 42);
-	ft_printf("make : %X", 42);
-
+	printf("\nreal : %07.1x\n", 42);
+	ft_printf("make : %07.1x", 42);
+	printf("\nreal : %020.3u\n", 2141483999);
+	ft_printf("make : %020.3u", 2141483999);
+	printf("\nreal : %-020.3u\n", 12345);
+	ft_printf("make : %-020.3u", 12345);
 //	printf("%0.4p\n",&k);
 //	printf("%0.4p\n",&k);
 	//ft_printf("%0.2p",'c');

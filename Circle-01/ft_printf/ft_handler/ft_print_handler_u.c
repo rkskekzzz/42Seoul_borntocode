@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_handler_s.c                               :+:      :+:    :+:   */
+/*   ft_print_handler_u.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
-/*   Updated: 2021/03/10 15:29:02 by suhshin          ###   ########.fr       */
+/*   Updated: 2021/03/10 15:29:11 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int pf_type_handler_s(char* str, t_format *st)
+int pf_type_handler_u(unsigned int num, t_format *st)
 {
-	char* ret;
+	char *ret;
 	int len;
 
-	if (!str)
-		str = pf_utils_strdup("(null)");
-	len = pf_utils_strlen(str);
-	if (st->dot == 0)
-		st->pre = len;
-	if (st->width == -1 ||
-		!(ret = pf_utils_strldup(str, pf_max(len, st->width), pf_min(len, st->pre), st)))
-		return (-1);
+	ret = pf_utils_untoa_16_base(num, BASE, 10);
+	len = pf_utils_strlen(ret);
+	st->zero = 0;
+	ret = pf_utils_strldup(ret, pf_max(st->width, len), len, st);
 	pf_utils_putstr(ret, 1);
 	return (pf_utils_strlen(ret));
 }
