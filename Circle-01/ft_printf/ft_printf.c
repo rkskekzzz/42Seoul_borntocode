@@ -14,16 +14,9 @@
 
 int main(void)
 {
-	//ft_printf("%-010c%c", 'a','b');
-	// ft_printf("%c",'c');
-
 	char *a = NULL;
 	char *k = "hello";
 	int a1,b,c,d;
-	/**  hancler c **/
-//	printf("%-7.3s\n","hello");
-//	ft_printf("%7.3s","hello");
-	/**  hancler s **/
 	printf("real : %.p\n", NULL);
 	ft_printf("make : %.p", NULL);
 	printf("\nreal : %20p\n", &k);
@@ -34,19 +27,6 @@ int main(void)
 	ft_printf("make : %020.3u", 2141483999);
 	printf("\nreal : %-020.3u\n", 12345);
 	ft_printf("make : %-020.3u", 12345);
-//	printf("%0.4p\n",&k);
-//	printf("%0.4p\n",&k);
-	//ft_printf("%0.2p",'c');
-//	b = printf("%s", NULL);
-//	printf("b : %d", b);
-	//c = ft_printf("%7.3s",a);
-	/**  hancler pc **/
-//	printf("%%\n");
-//	ft_printf("%%");
-	/**  hancler p **/
-//	printf("%-14p\n", "hello");
-//	ft_printf("%p", "hello");
-//	printf("\nb : %d c : %d", b, c);
 	return (0);
 }
 
