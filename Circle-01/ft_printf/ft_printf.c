@@ -18,12 +18,21 @@ int main(void)
 	// ft_printf("%c",'c');
 
 	char *a = NULL;
+	char *k = "hello";
 	int a1,b,c,d;
 	/**  hancler c **/
 //	printf("%-7.3s\n","hello");
 //	ft_printf("%7.3s","hello");
 	/**  hancler s **/
-	b = printf("%7s\n",a);
+	printf("real : %20d\n", 42);
+	ft_printf("make : %20d", 42);
+	// printf("real : %20p\n", &k);
+	// ft_printf("make : %20p", &k);
+//	printf("%0.4p\n",&k);
+//	printf("%0.4p\n",&k);
+	//ft_printf("%0.2p",'c');
+//	b = printf("%s", NULL);
+//	printf("b : %d", b);
 	//c = ft_printf("%7.3s",a);
 	/**  hancler pc **/
 //	printf("%%\n");
@@ -31,7 +40,7 @@ int main(void)
 	/**  hancler p **/
 //	printf("%-14p\n", "hello");
 //	ft_printf("%p", "hello");
-	printf("\nb : %d c : %d", b, c);
+//	printf("\nb : %d c : %d", b, c);
 	return (0);
 }
 

@@ -12,18 +12,16 @@
 
 #include "../ft_printf.h"
 
-int pf_type_handler(const char *format,size_t *i, va_list ap, t_format *st)
+int pf_type_handler(const char *format, size_t *i, va_list ap, t_format *st)
 {
 	if (format[*i] == 'c')
 		return (pf_type_handler_c(va_arg(ap, int), st));
 	if (format[*i] == 's')
 		return (pf_type_handler_s(va_arg(ap, char*), st));
 	if (format[*i] == 'p')
-		;
-		//return (pf_type_handler_c(format));
+		return (pf_type_handler_p(va_arg(ap, char*), st));
 	if (format[*i] == 'd' || format[*i] == 'i')
-		;
-		//return (pf_type_handler_c(format));
+		return (pf_type_handler_di(va_arg(ap, int), st));
 	if (format[*i] == 'u')
 		;
 		//return (pf_type_handler_c(format));
@@ -40,20 +38,22 @@ int pf_type_handler(const char *format,size_t *i, va_list ap, t_format *st)
 
 
 
-void pf_format_handler(const char *format,size_t *i, va_list ap, t_format *st)
+void pf_format_handler(const char *format, size_t *i, va_list ap, t_format *st)
 {
 	if (format[*i] == '\0')
 		--(*i);
-	if(format[*i] == '-')
+	else if(format[*i] == '-')
 		st->minus = 1;
-	if(st->dot == 0 && format[*i] == '0')
+	else if(st->dot == 0 && format[*i] == '0')
 		st->zero = 1;
-	if(format[*i] == '*')
+	else if(st->dot == 0 && format[*i] == '*')
 		st->width = va_arg(ap, int);
-	if(st->dot == 0 && ft_isdigit(format[*i]))
+	else if(st->dot == 0 && ft_isdigit(format[*i]))
 		st->width = pf_utils_atoi(format, i);
-	if(format[*i] == '.')
+	else if(format[*i] == '.')
 		st->dot = 1;
-	if(st->dot == 1 && ft_isdigit(format[*i]))
+	else if(st->dot == 1 && ft_isdigit(format[*i]))
 		st->pre = pf_utils_atoi(format, i);
+	else if(st->dot == 1 && format[*i] == '*')
+		st->pre = va_arg(ap, int);
 }

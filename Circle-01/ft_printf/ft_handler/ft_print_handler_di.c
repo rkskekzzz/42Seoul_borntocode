@@ -12,17 +12,16 @@
 
 #include "../ft_printf.h"
 
-int pf_type_handler_p(char *str, t_format *st)
+int pf_type_handler_di(int num, t_format *st)
 {
-	int len;
 	char *ret;
+	int len;
 
-	str = pf_utils_ulltoh((unsigned long long)str);
-	if(!(ret = malloc(ft_strlen(str) + 1)))
-		return (0);
-	st->zero = 0;
-	ret = pf_utils_strldup(str, pf_max(st->width, ft_strlen(str)), ft_strlen(str), st);
+	ret = ft_itoa(num);
+	len = ft_strlen(ret);
+	if (st->dot == 0)
+		st->pre = len;
+	ret = pf_utils_strldup(ret, pf_max(st->width, len), pf_min(st->pre, len), st);
 	ft_putstr_fd(ret, 1);
-
 	return (ft_strlen(ret));
 }

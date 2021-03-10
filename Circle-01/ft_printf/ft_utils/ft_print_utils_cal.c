@@ -25,3 +25,23 @@ int pf_min(int a, int b)
 		return (a);
 	return (b);
 }
+
+int pf_utils_ulllen(unsigned long long ull)
+{
+	int ret;
+
+	ret = 1;
+	while((ull /= 16) > 0)
+		++ret;
+	return (ret);
+}
+
+int pf_utils_ilen(int num)
+{
+	int ret;
+
+	ret = 1;
+	while((num /= 10) > 0)
+		++ret;
+	return (ret);
+}
