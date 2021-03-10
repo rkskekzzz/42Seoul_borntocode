@@ -17,7 +17,10 @@ int pf_type_handler_di(int num, t_format *st)
 	char *ret;
 	int len;
 
-	ret = pf_utils_itoa(num);
+	if (num == 0 && st->dot == 1)
+		ret = pf_utils_strdup("");
+	else
+		ret = pf_utils_itoa(num);
 	len = pf_utils_strlen(ret);
 	if (st->dot == 0)
 		st->pre = len;

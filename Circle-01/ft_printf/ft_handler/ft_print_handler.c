@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 int pf_type_handler(const char *format, size_t *i, va_list ap, t_format *st)
 {

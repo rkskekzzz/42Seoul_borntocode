@@ -1,0 +1,52 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/01/02 16:04:58 by suhshin           #+#    #+#              #
+#    Updated: 2021/01/02 16:05:03 by suhshin          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRCS					= ft_printf.c \
+						ft_handler/ft_print_handler.c \
+						ft_handler/ft_print_handler_c.c \
+						ft_handler/ft_print_handler_s.c \
+						ft_handler/ft_print_handler_p.c \
+						ft_handler/ft_print_handler_di.c \
+						ft_handler/ft_print_handler_u.c \
+						ft_handler/ft_print_handler_x.c \
+						ft_handler/ft_print_handler_pc.c \
+						ft_utils/ft_print_utils.c \
+						ft_utils/ft_print_utils_cal.c \
+						ft_utils/ft_print_utils_isfunc.c \
+						ft_utils/ft_print_utils_lib.c \
+						ft_utils/ft_print_utils_string.c \
+						ft_utils/ft_print_utils_xtox.c
+
+CC                      =       gcc
+CFLAGS          =       -Wextra -Wall -Werror -I . -c
+
+NAME            =       libftprintf.a
+
+OBJS            =       $(SRCS:.c=.o)
+
+all                     : $(NAME)
+
+%.o                     : %.c
+        $(CC) $(CFLAGS) $< -o $@
+
+$(NAME)         : $(OBJS)
+        ar -cr $(NAME) $(OBJS)
+
+clean           :
+        rm -rf $(OBJS)
+
+fclean          : clean
+        rm -rf $(NAME)
+
+re                      : fclean all
+
+.PHONY          : all bonus clean fclean re

@@ -14,19 +14,8 @@
 
 int main(void)
 {
-	char *a = NULL;
-	char *k = "hello";
-	int a1,b,c,d;
-	printf("real : %.p\n", NULL);
-	ft_printf("make : %.p", NULL);
-	printf("\nreal : %20p\n", &k);
-	ft_printf("make : %20p", &k);
-	printf("\nreal : %07.1x\n", 42);
-	ft_printf("make : %07.1x", 42);
-	printf("\nreal : %020.3u\n", 2141483999);
-	ft_printf("make : %020.3u", 2141483999);
-	printf("\nreal : %-020.3u\n", 12345);
-	ft_printf("make : %-020.3u", 12345);
+	printf("\nreal : %3.d\n", 0);
+	ft_printf("make : %3.d", 0);
 	return (0);
 }
 

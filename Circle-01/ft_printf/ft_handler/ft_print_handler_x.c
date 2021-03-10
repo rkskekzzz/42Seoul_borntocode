@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 int pf_type_handler_x(unsigned long long ull, t_format *st, const char * hb)
 {
