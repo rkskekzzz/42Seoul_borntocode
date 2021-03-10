@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+CC		=	gcc
+CFLAGS	=	-Wextra -Wall -Werror -I . -c
 SRCS					= ft_printf.c \
 						ft_handler/ft_print_handler.c \
 						ft_handler/ft_print_handler_c.c \
@@ -26,27 +28,28 @@ SRCS					= ft_printf.c \
 						ft_utils/ft_print_utils_string.c \
 						ft_utils/ft_print_utils_xtox.c
 
-CC                      =       gcc
-CFLAGS          =       -Wextra -Wall -Werror -I . -c
 
-NAME            =       libftprintf.a
 
-OBJS            =       $(SRCS:.c=.o)
+NAME=libftprintf.a
 
-all                     : $(NAME)
+OBJS=$(SRCS:.c=.o)
 
-%.o                     : %.c
-        $(CC) $(CFLAGS) $< -o $@
+.PHONY: all
+all	:	$(NAME)
 
-$(NAME)         : $(OBJS)
-        ar -cr $(NAME) $(OBJS)
+%.o  : %.c
+	$(CC) $(CFLAGS) $< -o $@
 
-clean           :
-        rm -rf $(OBJS)
+$(NAME) : $(OBJS)
+	ar -cr $(NAME) $(OBJS)
 
-fclean          : clean
-        rm -rf $(NAME)
+.PHONY: clean
+clean :
+	rm -rf $(OBJS)
 
-re                      : fclean all
+.PHONY: fclean
+fclean: clean
+	rm -rf $(NAME)
 
-.PHONY          : all bonus clean fclean re
+.PHONY: re
+re   : fclean all

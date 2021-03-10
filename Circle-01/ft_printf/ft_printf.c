@@ -12,13 +12,6 @@
 
 #include "ft_printf.h"
 
-int main(void)
-{
-	printf("\nreal : %3.d\n", 0);
-	ft_printf("make : %3.d", 0);
-	return (0);
-}
-
 int		ft_printf(const char* format, ...)
 {
 	int print_size;
