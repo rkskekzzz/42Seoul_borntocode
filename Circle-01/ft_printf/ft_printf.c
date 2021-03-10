@@ -24,10 +24,13 @@ int main(void)
 //	printf("%-7.3s\n","hello");
 //	ft_printf("%7.3s","hello");
 	/**  hancler s **/
-	printf("real : %20d\n", 42);
-	ft_printf("make : %20d", 42);
-	// printf("real : %20p\n", &k);
-	// ft_printf("make : %20p", &k);
+	printf("real : %.p\n", NULL);
+	ft_printf("make : %.p", NULL);
+	printf("\nreal : %20p\n", &k);
+	ft_printf("make : %20p", &k);
+	printf("\nreal : %X\n", 42);
+	ft_printf("make : %X", 42);
+
 //	printf("%0.4p\n",&k);
 //	printf("%0.4p\n",&k);
 	//ft_printf("%0.2p",'c');
@@ -70,14 +73,14 @@ int		pf_printf(const char *format, va_list ap)
 		pf_utils_init_struct(&st);
 		if (format[i] == '%')
 		{
-			while (!istype(format[++i]))
+			while (!pf_utils_istype(format[++i]))
 				pf_format_handler(format, &i, ap, &st);
-			if (istype(format[i]))
+			if (pf_utils_istype(format[i]))
 				print_size += pf_type_handler(format, &i, ap, &st);
 		}
 		else
 		{
-			write(1, &format[i], 1);
+			pf_utils_putchar(format[i], 1);
 			++print_size;
 		}
 		++i;

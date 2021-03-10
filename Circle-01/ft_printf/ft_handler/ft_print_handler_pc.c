@@ -14,6 +14,6 @@
 
 int pf_type_handler_pc(void)
 {
-	ft_putchar_fd('%', 1);
+	pf_utils_putchar('%', 1);
 	return (1);
 }

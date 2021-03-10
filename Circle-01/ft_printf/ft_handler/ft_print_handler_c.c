@@ -19,16 +19,16 @@ int pf_type_handler_c(char ch, t_format *st)
 	{
 		if (st->minus == 1)
 		{
-			write(1, &ch, 1);
+			pf_utils_putchar(ch, 1);
 			pf_utils_print_rep(pf_utils_width_char(st), st->width - 1);
 		}
 		else
 		{
 			pf_utils_print_rep(pf_utils_width_char(st), st->width - 1);
-			write(1, &ch, 1);
+			pf_utils_putchar(ch, 1);
 		}
 		return (st->width);
 	}
-	write(1, &ch, 1);
+	pf_utils_putchar(ch, 1);
 	return (1);
 }

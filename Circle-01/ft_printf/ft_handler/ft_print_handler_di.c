@@ -17,11 +17,11 @@ int pf_type_handler_di(int num, t_format *st)
 	char *ret;
 	int len;
 
-	ret = ft_itoa(num);
-	len = ft_strlen(ret);
+	ret = pf_utils_itoa(num);
+	len = pf_utils_strlen(ret);
 	if (st->dot == 0)
 		st->pre = len;
 	ret = pf_utils_strldup(ret, pf_max(st->width, len), pf_min(st->pre, len), st);
-	ft_putstr_fd(ret, 1);
-	return (ft_strlen(ret));
+	pf_utils_putstr(ret, 1);
+	return (pf_utils_strlen(ret));
 }

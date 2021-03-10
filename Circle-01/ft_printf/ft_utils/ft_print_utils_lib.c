@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/30 09:52:04 by suhshin           #+#    #+#             */
-/*   Updated: 2020/12/31 12:14:06 by suhshin          ###   ########.fr       */
+/*   Created: 2021/02/28 15:26:30 by suhshin           #+#    #+#             */
+/*   Updated: 2021/02/28 16:13:43 by suhshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
-void	*ft_calloc(size_t cnt, size_t n)
+void	*pf_utils_memset(void *dest, int value, size_t size)
 {
-	void	*ptr;
+	size_t	i;
 
-	if (!(ptr = (void *)malloc(n * cnt)))
-		return (NULL);
-	ft_bzero(ptr, n * cnt);
-	return (ptr);
+	i = -1;
+	while (++i < size)
+		*((char *)dest + i) = value;
+	return (dest);
+}
+
+void	pf_utils_putstr(char *s, int fd)
+{
+	int	len;
+
+	if (!s)
+		return ;
+	len = pf_utils_strlen(s);
+	write(fd, s, len);
+}
+void	pf_utils_putchar(char c, int fd)
+{
+	write(fd, &c, 1);
 }

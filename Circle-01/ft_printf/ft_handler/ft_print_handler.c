@@ -19,18 +19,16 @@ int pf_type_handler(const char *format, size_t *i, va_list ap, t_format *st)
 	if (format[*i] == 's')
 		return (pf_type_handler_s(va_arg(ap, char*), st));
 	if (format[*i] == 'p')
-		return (pf_type_handler_p(va_arg(ap, char*), st));
+		return (pf_type_handler_p(va_arg(ap, unsigned long long), st));
 	if (format[*i] == 'd' || format[*i] == 'i')
 		return (pf_type_handler_di(va_arg(ap, int), st));
 	if (format[*i] == 'u')
 		;
 		//return (pf_type_handler_c(format));
 	if (format[*i] == 'x')
-		;
-		//return (pf_type_handler_c(format));
+		return (pf_type_handler_x(va_arg(ap, long long), st, HEXBASE));
 	if (format[*i] == 'X')
-		;
-		//return (pf_type_handler_c(format));
+		return (pf_type_handler_x(va_arg(ap, long long), st, HEXBASEL));
 	if (format[*i] == '%')
 		return (pf_type_handler_pc());
 	return (0);
@@ -47,13 +45,23 @@ void pf_format_handler(const char *format, size_t *i, va_list ap, t_format *st)
 	else if(st->dot == 0 && format[*i] == '0')
 		st->zero = 1;
 	else if(st->dot == 0 && format[*i] == '*')
-		st->width = va_arg(ap, int);
-	else if(st->dot == 0 && ft_isdigit(format[*i]))
+		st->width = pf_va_handler(va_arg(ap, int), st);
+	else if(st->dot == 0 && pf_utils_isdigit(format[*i]))
 		st->width = pf_utils_atoi(format, i);
 	else if(format[*i] == '.')
 		st->dot = 1;
-	else if(st->dot == 1 && ft_isdigit(format[*i]))
+	else if(st->dot == 1 && pf_utils_isdigit(format[*i]))
 		st->pre = pf_utils_atoi(format, i);
 	else if(st->dot == 1 && format[*i] == '*')
-		st->pre = va_arg(ap, int);
+		st->pre = pf_va_handler(va_arg(ap, int), st);
+}
+
+int pf_va_handler(int num, t_format *st)
+{
+	if (num < 0)
+	{
+		st->minus = 1;
+		num *= -1;
+	}
+	return (num);
 }

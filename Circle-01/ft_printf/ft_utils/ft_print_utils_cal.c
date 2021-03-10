@@ -26,22 +26,35 @@ int pf_min(int a, int b)
 	return (b);
 }
 
-int pf_utils_ulllen(unsigned long long ull)
+int pf_utils_ulllen(long long num)
 {
-	int ret;
+	size_t	ret;
 
 	ret = 1;
-	while((ull /= 16) > 0)
+	if (num < 0)
+		++ret;
+	num = pf_utils_abs(num);
+	while ((num /= 16) > 0)
 		++ret;
 	return (ret);
 }
 
-int pf_utils_ilen(int num)
+int pf_utils_ilen(long long num)
 {
-	int ret;
+	size_t	ret;
 
 	ret = 1;
-	while((num /= 10) > 0)
+	if (num < 0)
+		++ret;
+	num = pf_utils_abs(num);
+	while ((num /= 10) > 0)
 		++ret;
 	return (ret);
+}
+
+long long	pf_utils_abs(long long num)
+{
+	if (num < 0)
+		return (-num);
+	return (num);
 }
