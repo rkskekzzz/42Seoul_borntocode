@@ -36,3 +36,23 @@ void	pf_utils_putchar(char c, int fd)
 {
 	write(fd, &c, 1);
 }
+
+int pf_utils_freesrc(char **dest, char *src)
+{
+	free(*dest);
+	*dest = 0;
+	if (src == 0)
+		return (0);
+	*dest = src;
+	return (1);
+}
+
+int pf_utils_freestr(char **str)
+{
+	int len;
+	if (!*str)
+		return (0);
+	len = pf_utils_strlen(*str);
+	free(*str);
+	return (len);
+}

@@ -17,14 +17,17 @@ int pf_type_handler_p(unsigned long long num, t_format *st)
 	int len;
 	char *ret;
 
-	if (num == 0)
+	if (st->dot == 1 && num == 0)
+		ret = pf_utils_strdup("");
+	else if (num == 0)
 		ret = pf_utils_strdup("0");
 	else
-		ret =pf_utils_untoa_16_base(num, HEXBASE, 16, st);
+		ret = pf_utils_untoa_16_base(num, HEXBASE, 16, st);
 	ret = pf_utils_strjoin("0x", ret);
 	len = pf_utils_strlen(ret);
 	st->zero = 0;
-	ret = pf_utils_strldup(ret, pf_max(st->width, len), len, st);
+//	ret = pf_utils_strldup(ret, pf_max(st->width, len), len, st);
+	pf_utils_freesrc(&ret, pf_utils_strldup(ret, pf_max(st->width, len), len, st));
 	pf_utils_putstr(ret, 1);
-	return (pf_utils_strlen(ret));
+	return (pf_utils_freestr(&ret));
 }

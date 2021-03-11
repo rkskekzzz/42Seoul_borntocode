@@ -41,24 +41,16 @@ void pf_format_handler(const char *format,size_t *i, va_list ap, t_format *st);
 int pf_asterisk_wid_handler(int num, t_format *st);
 int pf_asterisk_pre_handler(int num, t_format *st);
 
-//handler_c
 int pf_type_handler_c(char ch, t_format *st);
-//handler_s
 int pf_type_handler_s(char *str, t_format *st);
-//handler_p
 int pf_type_handler_p(unsigned long long num, t_format *st);
-//handler_di
 int pf_type_handler_di(int num, t_format *st);
-//handler_u
-int pf_type_handler_u(unsigned int num, t_format *st);
-//handler_x & X
-int pf_type_handler_x(unsigned long long num, t_format *st, const char * hb);
+int pf_type_handler_x(unsigned long long num, t_format *st, const char * base, int bs);
 
 //utils
 void pf_utils_init_struct(t_format *st);
 void pf_utils_print_rep(char c, int n);
 char pf_utils_width_char(t_format *st);
-
 
 //utils_xtox
 int	pf_utils_atoi(const char *format, size_t *i);
@@ -81,11 +73,13 @@ size_t	pf_utils_strlen(const char *str);
 size_t	pf_utils_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*pf_utils_strdup(const char *src);
 char 	*pf_utils_strldup(const char *src, int wid, int pre, t_format *st);
-char	*pf_utils_strjoin(char const *s1, char const *s2);
+char	*pf_utils_strjoin(char *s1, char *s2);
 
 
 // utils_lib
 void	*pf_utils_memset(void *dest, int value, size_t size);
 void	pf_utils_putstr(char *s, int fd);
 void	pf_utils_putchar(char c, int fd);
+int pf_utils_freesrc(char **dest, char *src);
+int pf_utils_freestr(char **str);
 #endif

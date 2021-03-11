@@ -75,7 +75,7 @@ char *pf_utils_strldup(const char *src, int wid, int pre, t_format *st)
 	return ((char *)dest);
 }
 
-char	*pf_utils_strjoin(char const *s1, char const *s2)
+char	*pf_utils_strjoin(char *s1, char *s2)
 {
 	char	*dest;
 	size_t	i;
@@ -89,6 +89,7 @@ char	*pf_utils_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	pf_utils_strlcpy(dest, s1, i + 1);
 	pf_utils_strlcpy(dest + i, s2, j + 1);
+	free(s2);
 	return (dest);
 }
 

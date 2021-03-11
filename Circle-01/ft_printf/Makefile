@@ -6,7 +6,7 @@
 #    By: suhshin <suhshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 16:04:58 by suhshin           #+#    #+#              #
-#    Updated: 2021/03/11 19:49:28 by suhshin          ###   ########.fr        #
+#    Updated: 2021/03/11 20:43:27 by suhshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ SRCS					= ft_printf.c \
 						ft_handler/ft_print_handler_s.c \
 						ft_handler/ft_print_handler_p.c \
 						ft_handler/ft_print_handler_di.c \
-						ft_handler/ft_print_handler_u.c \
 						ft_handler/ft_print_handler_x.c \
 						ft_utils/ft_print_utils.c \
 						ft_utils/ft_print_utils_cal.c \
