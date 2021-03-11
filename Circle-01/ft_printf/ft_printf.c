@@ -12,6 +12,19 @@
 
 #include "ft_printf.h"
 
+// int main()
+// {
+// 	printf("\nreal : %-7.9d\n", -12345);
+// 	ft_printf("make : %-7.9d", -12345);
+// 	printf("\nreal : %.7d\n", -12345);
+// 	ft_printf("make : %.7d", -12345);
+// 	printf("\nreal : %-9.7d\n", -12345);
+// 	ft_printf("make : %-9.7d", -12345);
+// 	printf("\nreal : %07d\n", 12345);
+// 	ft_printf("make : %07d", 12345);
+// 	return (0);
+// }
+
 int		ft_printf(const char* format, ...)
 {
 	int print_size;

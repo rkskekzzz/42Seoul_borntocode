@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 int pf_type_handler_s(char* str, t_format *st)
 {
@@ -20,7 +20,7 @@ int pf_type_handler_s(char* str, t_format *st)
 	if (!str)
 		str = pf_utils_strdup("(null)");
 	len = pf_utils_strlen(str);
-	if (st->dot == 0)
+	if (st->dot == 0 || st->pre == -1)
 		st->pre = len;
 	if (st->width == -1 ||
 		!(ret = pf_utils_strldup(str, pf_max(len, st->width), pf_min(len, st->pre), st)))

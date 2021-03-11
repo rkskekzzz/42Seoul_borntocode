@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 int pf_type_handler_di(int num, t_format *st)
 {
@@ -22,11 +22,10 @@ int pf_type_handler_di(int num, t_format *st)
 	if (num == 0 && st->dot == 1 && st->pre == 0)
 		ret = pf_utils_strdup("");
 	else
-		ret = pf_utils_itoa(num);
+		ret = pf_utils_itoa(num, st);
 	len = pf_utils_strlen(ret);
-	if (st->dot == 0)
-		st->pre = len;
-	ret = pf_utils_strldup(ret, pf_max(st->width, len), pf_min(st->pre, len), st);
+	st->zero = 0;
+	ret = pf_utils_strldup(ret, pf_max(st->width, len), len, st);
 	pf_utils_putstr(ret, 1);
 	return (pf_utils_strlen(ret));
 }

@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 int pf_type_handler_c(char ch, t_format *st)
 {
-
 	if (st->width > 1)
 	{
 		if (st->minus == 1)

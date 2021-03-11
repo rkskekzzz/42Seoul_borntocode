@@ -29,7 +29,7 @@ int pf_type_handler(const char *format, size_t *i, va_list ap, t_format *st)
 	if (format[*i] == 'X')
 		return (pf_type_handler_x(va_arg(ap, unsigned long long), st, HEXBASEL));
 	if (format[*i] == '%')
-		return (pf_type_handler_pc());
+		return (pf_type_handler_pc(st));
 	return (0);
 }
 

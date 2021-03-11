@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 int pf_type_handler_p(unsigned long long ull, t_format *st)
 {
 	int len;
 	char *ret;
 
-	ret = pf_utils_strjoin("0x", pf_utils_untoa_16_base(ull, HEXBASE, 16));
+	ret = pf_utils_strjoin("0x", pf_utils_untoa_16_base(ull, HEXBASE, 16, st));
 	len = pf_utils_strlen(ret);
 	st->zero = 0;
 	ret = pf_utils_strldup(ret, pf_max(st->width, len), len, st);

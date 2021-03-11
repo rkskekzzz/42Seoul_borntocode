@@ -10,10 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
-int pf_type_handler_pc(void)
+int pf_type_handler_pc(t_format *st)
 {
+	if (st->width > 1)
+	{
+		if (st->minus == 1)
+		{
+			pf_utils_putchar('%', 1);
+			pf_utils_print_rep(pf_utils_width_char(st), st->width - 1);
+		}
+		else
+		{
+			pf_utils_print_rep(pf_utils_width_char(st), st->width - 1);
+			pf_utils_putchar('%', 1);
+		}
+		return (st->width);
+	}
 	pf_utils_putchar('%', 1);
 	return (1);
 }

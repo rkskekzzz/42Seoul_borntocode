@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 int	pf_utils_atoi(const char *format, size_t *i)
 {
@@ -62,7 +62,7 @@ char			*pf_utils_itoa(int num, t_format *st)
 	return (ret);
 }
 
-char* pf_utils_untoa_16_base(unsigned long long num, const char * base, int bs)
+char* pf_utils_untoa_16_base(unsigned long long num, const char * base, int bs, t_format *st)
 {
 	int		i;
 	int		len;
@@ -70,7 +70,7 @@ char* pf_utils_untoa_16_base(unsigned long long num, const char * base, int bs)
 
 	if (num == 0)
 		return ("");
-	len = pf_utils_numlen(num, bs);
+	len = pf_max(pf_utils_numlen(num, bs), st->pre);
 	if (!(ret = (char *)malloc(len + 1)))
 		return (NULL);
 	i = 0;

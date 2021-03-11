@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
-//cspdiuxX
 int pf_utils_istype(char ch)
 {
 	return (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || ch == 'i' || \
