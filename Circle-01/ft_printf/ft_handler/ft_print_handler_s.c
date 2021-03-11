@@ -15,6 +15,7 @@
 int pf_type_handler_s(char* str, t_format *st)
 {
 	char* ret;
+	char* tmp;
 	int len;
 
 	if (st->dot == 1 && st->pre == -1)
@@ -29,8 +30,10 @@ int pf_type_handler_s(char* str, t_format *st)
 	if (st->dot == 1)
 		len = pf_min(st->pre, len);
 	len =  pf_max(st->width, len);
-	//ret = pf_utils_strldup(ret, len, pf_min(pf_utils_strlen(ret), st->pre), st);
-	pf_utils_freesrc(&ret, pf_utils_strldup(ret, len, pf_min(pf_utils_strlen(ret), st->pre), st));
-	pf_utils_putstr(ret, 1);
-	return (pf_utils_freestr(&ret));
+	tmp = pf_utils_strldup(ret, len, pf_min(pf_utils_strlen(ret), st->pre), st);
+	//pf_utils_freesrc(&ret, pf_utils_strldup(ret, len, pf_min(pf_utils_strlen(ret), st->pre), st));
+	pf_utils_putstr(tmp, 1);
+	if(ret != NULL)
+		free(ret);
+	return (pf_utils_freestr(&tmp));
 }

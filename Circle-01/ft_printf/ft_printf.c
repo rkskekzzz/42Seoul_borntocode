@@ -12,15 +12,13 @@
 
 #include "ft_printf.h"
 
-int main()
-{
+// int main()
+// {
+// 	printf("\nreal : %s\n", "hello");
+// 	ft_printf("make : %s", "hello");
 
-
-	printf("\nreal : %X\n", -214748364);
-	ft_printf("make : %X", -214748364);
-
-	return (0);
-}
+// 	return (0);
+// }
 
 int		ft_printf(const char* format, ...)
 {

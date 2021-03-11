@@ -36,3 +36,13 @@ char pf_utils_width_char(t_format *st)
 }
 
 
+void	*pf_utils_memcpy(void *dest, const void *src, size_t size)
+{
+	size_t	i;
+
+	i = -1;
+	if (dest != src && size)
+		while (++i < size)
+			*((unsigned char *)dest + i) = *((unsigned char *)src + i);
+	return (dest);
+}

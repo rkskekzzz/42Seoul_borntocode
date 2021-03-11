@@ -51,6 +51,7 @@ int pf_type_handler_x(unsigned long long num, t_format *st, const char * base, i
 void pf_utils_init_struct(t_format *st);
 void pf_utils_print_rep(char c, int n);
 char pf_utils_width_char(t_format *st);
+void	*pf_utils_memcpy(void *dest, const void *src, size_t size);
 
 //utils_xtox
 int	pf_utils_atoi(const char *format, size_t *i);
@@ -72,7 +73,7 @@ long long	pf_utils_abs(long long n);
 size_t	pf_utils_strlen(const char *str);
 size_t	pf_utils_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*pf_utils_strdup(const char *src);
-char 	*pf_utils_strldup(const char *src, int wid, int pre, t_format *st);
+char 	*pf_utils_strldup(char *src, int wid, int pre, t_format *st);
 char	*pf_utils_strjoin(char *s1, char *s2);
 
 

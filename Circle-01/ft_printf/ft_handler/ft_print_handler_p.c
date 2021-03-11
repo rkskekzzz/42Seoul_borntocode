@@ -26,8 +26,8 @@ int pf_type_handler_p(unsigned long long num, t_format *st)
 	ret = pf_utils_strjoin("0x", ret);
 	len = pf_utils_strlen(ret);
 	st->zero = 0;
-//	ret = pf_utils_strldup(ret, pf_max(st->width, len), len, st);
-	pf_utils_freesrc(&ret, pf_utils_strldup(ret, pf_max(st->width, len), len, st));
+	ret = pf_utils_strldup(ret, pf_max(st->width, len), len, st);
+//	pf_utils_freesrc(&ret, pf_utils_strldup(ret, pf_max(st->width, len), len, st));
 	pf_utils_putstr(ret, 1);
 	return (pf_utils_freestr(&ret));
 }

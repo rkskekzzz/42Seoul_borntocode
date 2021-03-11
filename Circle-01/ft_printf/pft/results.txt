@@ -1,6 +1,3 @@
-Test 185 (p_width_fit_lj) : FAILED.
-    First line of code: {return test("%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p%-70p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10    SEGFAULT
-
 Test 647 (moul_star_2) : FAILED.
     First line of code: {return test("%% *.5i 42 == |% *.5i|
 ", 4, 42);}

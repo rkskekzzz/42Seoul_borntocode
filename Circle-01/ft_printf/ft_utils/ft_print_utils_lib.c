@@ -54,5 +54,6 @@ int pf_utils_freestr(char **str)
 		return (0);
 	len = pf_utils_strlen(*str);
 	free(*str);
+	*str = 0;
 	return (len);
 }
