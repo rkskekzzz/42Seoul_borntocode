@@ -44,7 +44,6 @@ char			*pf_utils_itoa(int num, t_format *st)
 	char	*ret;
 
 	len = pf_max(pf_utils_numlen(num, 10), st->pre);
-	//len = pf_max(len, st->width);
 	if (!(ret = (char *)malloc(len + 1)))
 		return (NULL);
 	i = 0;

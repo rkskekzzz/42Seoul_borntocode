@@ -52,7 +52,7 @@ void pf_format_handler(const char *format, size_t *i, va_list ap, t_format *st)
 	else if(st->dot == 1 && pf_utils_isdigit(format[*i]))
 		st->pre = pf_utils_atoi(format, i);
 	else if(st->dot == 1 && format[*i] == '*')
-		st->pre = pf_asterisk_pre_handler(va_arg(ap, int));
+		st->pre = pf_asterisk_pre_handler(va_arg(ap, int), st);
 }
 
 int pf_asterisk_wid_handler(int num, t_format *st)
@@ -65,9 +65,12 @@ int pf_asterisk_wid_handler(int num, t_format *st)
 	return (num);
 }
 
-int pf_asterisk_pre_handler(int num)
+int pf_asterisk_pre_handler(int num, t_format *st)
 {
 	if (num < 0)
+	{
+		st->dot = 0;
 		return (-2);
+	}
 	return (num);
 }

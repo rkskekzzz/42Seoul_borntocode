@@ -39,7 +39,7 @@ int	pf_printf(const char *format, va_list ap);
 int pf_type_handler(const char *format,size_t *i, va_list ap, t_format *st);
 void pf_format_handler(const char *format,size_t *i, va_list ap, t_format *st);
 int pf_asterisk_wid_handler(int num, t_format *st);
-int pf_asterisk_pre_handler(int num);
+int pf_asterisk_pre_handler(int num, t_format *st);
 
 //handler_c
 int pf_type_handler_c(char ch, t_format *st);
