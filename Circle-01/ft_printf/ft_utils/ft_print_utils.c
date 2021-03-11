@@ -15,6 +15,7 @@
 void pf_utils_init_struct(t_format *st)
 {
 	pf_utils_memset(st, 0, sizeof(t_format)); // change to ft_memset
+	st->pre = 2147483647;
 }
 
 void pf_utils_print_rep(char c, int n)

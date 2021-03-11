@@ -36,14 +36,14 @@ int	pf_utils_atoi(const char *format, size_t *i)
 	return ((int)ret);
 }
 
-char			*pf_utils_itoa(int num)
+char			*pf_utils_itoa(int num, t_format *st)
 {
 	int		i;
 	int		len;
 	int		sign;
 	char	*ret;
 
-	len = pf_utils_numlen(num, 10);
+	len = pf_max(pf_utils_numlen(num, 10), st->pre);
 	if (!(ret = (char *)malloc(len + 1)))
 		return (NULL);
 	i = 0;

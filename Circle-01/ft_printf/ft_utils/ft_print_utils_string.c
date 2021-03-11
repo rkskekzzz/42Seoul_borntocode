@@ -55,7 +55,6 @@ char	*pf_utils_strdup(const char *src)
 	return ((char *)dest);
 }
 
-
 char *pf_utils_strldup(const char *src, int wid, int pre, t_format *st)
 {
 	char	*dest;
