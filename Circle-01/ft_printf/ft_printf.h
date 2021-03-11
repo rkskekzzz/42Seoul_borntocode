@@ -45,7 +45,7 @@ int pf_type_handler_c(char ch, t_format *st);
 int pf_type_handler_s(char *str, t_format *st);
 int pf_type_handler_p(unsigned long long num, t_format *st);
 int pf_type_handler_di(int num, t_format *st);
-int pf_type_handler_x(unsigned long long num, t_format *st, const char * base, int bs);
+int pf_type_handler_x(unsigned int num, t_format *st, const char * base, int bs);
 
 //utils
 void pf_utils_init_struct(t_format *st);

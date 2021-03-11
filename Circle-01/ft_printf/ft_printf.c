@@ -14,8 +14,24 @@
 
 // int main()
 // {
-// 	printf("\nreal : %s\n", "hello");
-// 	ft_printf("make : %s", "hello");
+// 	int		a = -4;
+// 	int		b = 0;
+// 	char	c = 'a';
+// 	int		d = 2147483647;
+// 	int		e = -2147483648;
+// 	int		f = 42;
+// 	int		g = 25;
+// 	int		h = 4200;
+// 	int		i = 8;
+// 	int		j = -12;
+// 	int		k = 123456789;
+// 	int		l = 0;
+// 	int		m = -12345678;
+// 	char	*n = "abcdefghijklmnop";
+
+// 	ft_printf(" --- Return : %d\n", ft_printf("Simple input test"));
+// 	ft_printf(" --- Return : %d\n", ft_printf("%i, %d, %d, %d, %d, %s, %c, %d, %u, %x, %X", i, j, k, l, m, n, c, c, j, j, j)); //T2
+
 
 // 	return (0);
 // }
