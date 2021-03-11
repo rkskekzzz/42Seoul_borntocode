@@ -29,7 +29,7 @@ int pf_type_handler(const char *format, size_t *i, va_list ap, t_format *st)
 	if (format[*i] == 'X')
 		return (pf_type_handler_x(va_arg(ap, unsigned long long), st, HEXBASEL));
 	if (format[*i] == '%')
-		return (pf_type_handler_pc(st));
+		return (pf_type_handler_c('%', st));
 	return (0);
 }
 
@@ -44,7 +44,7 @@ void pf_format_handler(const char *format, size_t *i, va_list ap, t_format *st)
 	else if(st->dot == 0 && format[*i] == '0')
 		st->zero = 1;
 	else if(st->dot == 0 && format[*i] == '*')
-		st->width = pf_va_handler(va_arg(ap, int), st);
+		st->width = pf_asterisk_wid_handler(va_arg(ap, int), st);
 	else if(st->dot == 0 && pf_utils_isdigit(format[*i]))
 		st->width = pf_utils_atoi(format, i);
 	else if(format[*i] == '.')
@@ -52,15 +52,22 @@ void pf_format_handler(const char *format, size_t *i, va_list ap, t_format *st)
 	else if(st->dot == 1 && pf_utils_isdigit(format[*i]))
 		st->pre = pf_utils_atoi(format, i);
 	else if(st->dot == 1 && format[*i] == '*')
-		st->pre = pf_va_handler(va_arg(ap, int), st);
+		st->pre = pf_asterisk_pre_handler(va_arg(ap, int));
 }
 
-int pf_va_handler(int num, t_format *st)
+int pf_asterisk_wid_handler(int num, t_format *st)
 {
 	if (num < 0)
 	{
 		st->minus = 1;
 		num *= -1;
 	}
+	return (num);
+}
+
+int pf_asterisk_pre_handler(int num)
+{
+	if (num < 0)
+		return (-2);
 	return (num);
 }

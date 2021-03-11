@@ -38,22 +38,21 @@ int	pf_printf(const char *format, va_list ap);
 //handler
 int pf_type_handler(const char *format,size_t *i, va_list ap, t_format *st);
 void pf_format_handler(const char *format,size_t *i, va_list ap, t_format *st);
-int pf_va_handler(int num, t_format *st);
+int pf_asterisk_wid_handler(int num, t_format *st);
+int pf_asterisk_pre_handler(int num);
 
 //handler_c
 int pf_type_handler_c(char ch, t_format *st);
 //handler_s
 int pf_type_handler_s(char *str, t_format *st);
 //handler_p
-int pf_type_handler_p(unsigned long long ull, t_format *st);
+int pf_type_handler_p(unsigned long long num, t_format *st);
 //handler_di
 int pf_type_handler_di(int num, t_format *st);
 //handler_u
 int pf_type_handler_u(unsigned int num, t_format *st);
 //handler_x & X
-int pf_type_handler_x(unsigned long long ull, t_format *st, const char * hb);
-//handler_pc
-int pf_type_handler_pc(t_format *st);
+int pf_type_handler_x(unsigned long long num, t_format *st, const char * hb);
 
 //utils
 void pf_utils_init_struct(t_format *st);

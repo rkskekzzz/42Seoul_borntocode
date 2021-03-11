@@ -45,15 +45,15 @@ int pf_type_handler_c(char ch, t_format *st);
 //handler_s
 int pf_type_handler_s(char *str, t_format *st);
 //handler_p
-int pf_type_handler_p(unsigned long long ull, t_format *st);
+int pf_type_handler_p(unsigned long long num, t_format *st);
 //handler_di
 int pf_type_handler_di(int num, t_format *st);
 //handler_u
 int pf_type_handler_u(unsigned int num, t_format *st);
 //handler_x & X
-int pf_type_handler_x(unsigned long long ull, t_format *st, const char * hb);
+int pf_type_handler_x(unsigned long long num, t_format *st, const char * hb);
 //handler_pc
-int pf_type_handler_pc(void);
+int pf_type_handler_pc(t_format *st);
 
 //utils
 void pf_utils_init_struct(t_format *st);
@@ -63,8 +63,8 @@ char pf_utils_width_char(t_format *st);
 
 //utils_xtox
 int	pf_utils_atoi(const char *format, size_t *i);
-char* pf_utils_itoa(int num);
-char* pf_utils_untoa_16_base(unsigned long long num, const char * base, int bs);
+char* pf_utils_itoa(int num, t_format *st);
+char* pf_utils_untoa_16_base(unsigned long long num, const char * base, int bs, t_format *st);
 
 
 // utils_ isfunc

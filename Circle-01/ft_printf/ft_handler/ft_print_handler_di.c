@@ -19,7 +19,9 @@ int pf_type_handler_di(int num, t_format *st)
 
 	if (num < 0)
 		st->pre += 1;
-	if (num == 0 && st->dot == 1 && st->pre == 0)
+	if (st->zero == 1 && st->dot == 0)
+		st->pre = st->width;
+	if (num == 0 && st->dot == 1 && st->pre <= 0)
 		ret = pf_utils_strdup("");
 	else
 		ret = pf_utils_itoa(num, st);

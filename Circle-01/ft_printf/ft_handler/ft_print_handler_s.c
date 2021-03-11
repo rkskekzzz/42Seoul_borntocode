@@ -17,14 +17,38 @@ int pf_type_handler_s(char* str, t_format *st)
 	char* ret;
 	int len;
 
+	if (st->dot == 1 && st->pre == -1)
+		ret = pf_utils_strdup("");
+	else if (!str)
+		ret = pf_utils_strdup("(null)");
+	else
+		ret = pf_utils_strdup(str);
+	len = pf_utils_strlen(ret);
+	if (st->pre <= -1)
+		st->pre = len;
+	if (st->dot == 1)
+		len = pf_min(st->pre, len);
+	len =  pf_max(st->width, len);
+	if (st->width == -1 || !(ret = pf_utils_strldup(ret, len, pf_min(pf_utils_strlen(ret), st->pre), st)))
+		return (-1);
+	pf_utils_putstr(ret, 1);
+	return (pf_utils_strlen(ret));
+}
+
+/*
+	char* ret;
+	int len;
+
 	if (!str)
 		str = pf_utils_strdup("(null)");
 	len = pf_utils_strlen(str);
-	if (st->dot == 0 || st->pre == -1)
+	if (st->dot == 0)
 		st->pre = len;
+	if (st->pre == -1)
+		st->pre = 0;
 	if (st->width == -1 ||
 		!(ret = pf_utils_strldup(str, pf_max(len, st->width), pf_min(len, st->pre), st)))
 		return (-1);
 	pf_utils_putstr(ret, 1);
 	return (pf_utils_strlen(ret));
-}
+*/

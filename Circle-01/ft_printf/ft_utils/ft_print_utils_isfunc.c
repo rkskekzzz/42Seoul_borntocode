@@ -14,8 +14,9 @@
 
 int pf_utils_istype(char ch)
 {
-	return (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || ch == 'i' || \
-		ch == 'u' || ch == 'x' || ch == 'X' || ch == '%');
+	return (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || \
+			ch == 'i' || ch == 'u' || ch == 'x' || ch == 'X' || \
+			ch == '%');
 }
 
 int	pf_utils_isdigit(char ch)
