@@ -36,14 +36,14 @@ int	pf_utils_atoi(const char *format, size_t *i)
 	return ((int)ret);
 }
 
-char			*pf_utils_itoa(int num, t_format *st)
+char			*pf_utils_itoa(long long num, const char * base, int bs, t_format *st)
 {
 	int		i;
 	int		len;
 	int		sign;
 	char	*ret;
 
-	len = pf_max(pf_utils_numlen(num, 10), st->pre);
+	len = pf_max(pf_utils_numlen(num, bs), st->pre);
 	if (!(ret = (char *)malloc(len + 1)))
 		return (NULL);
 	i = 0;
@@ -54,25 +54,6 @@ char			*pf_utils_itoa(int num, t_format *st)
 		ret[0] = '-';
 	}
 	while (++i < len + sign)
-	{
-		ret[len - i] = BASE[pf_utils_abs(num % 10)];
-		num /= 10;
-	}
-	ret[len] = '\0';
-	return (ret);
-}
-
-char* pf_utils_untoa_16_base(unsigned long long num, const char * base, int bs, t_format *st)
-{
-	int		i;
-	int		len;
-	char	*ret;
-
-	len = pf_max(pf_utils_numlen(num, bs), st->pre);
-	if (!(ret = (char *)malloc(len + 1)))
-		return (NULL);
-	i = 0;
-	while (++i <= len)
 	{
 		ret[len - i] = base[pf_utils_abs(num % bs)];
 		num /= bs;

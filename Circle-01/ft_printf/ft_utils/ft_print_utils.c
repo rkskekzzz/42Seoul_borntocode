@@ -20,19 +20,24 @@ void pf_utils_init_struct(t_format *st)
 
 void pf_utils_print_rep(char c, int n)
 {
-	int i;
+	char *tmp;
 
-	i = -1;
-	while (++i < n)
-		pf_utils_putchar(c, 1);
+	if (n < 0)
+		return ;
+	tmp = malloc(n + 1);
+	if(!tmp)
+		return ;
+	pf_utils_memset(tmp, c, n);
+	tmp[n] = '\0';
+	pf_utils_putstr(tmp, 1);
+	free(tmp);
 }
 
 char pf_utils_width_char(t_format *st)
 {
 	if (st->zero == 1 && st->minus != 1)
 		return ('0');
-	else
-		return (' ');
+	return (' ');
 }
 
 

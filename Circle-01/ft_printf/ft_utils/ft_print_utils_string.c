@@ -22,27 +22,6 @@ size_t	pf_utils_strlen(const char *str)
 	return (i);
 }
 
-size_t	pf_utils_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	if (!src)
-		return (0);
-	if (dstsize)
-	{
-		while (i < dstsize - 1 && src[i])
-		{
-			dst[i] = src[i];
-			++i;
-		}
-		dst[i] = '\0';
-	}
-	while (src[i])
-		++i;
-	return (i);
-}
-
 char	*pf_utils_strdup(const char *src)
 {
 	char	*dest;
@@ -51,7 +30,8 @@ char	*pf_utils_strdup(const char *src)
 	len = pf_utils_strlen(src);
 	if (!(dest = (char *)malloc(len + 1)))
 		return (NULL);
-	pf_utils_strlcpy(dest, src, len + 1);
+	pf_utils_memcpy(dest, src, len);
+	dest[len] = '\0';
 	return ((char *)dest);
 }
 
@@ -68,29 +48,10 @@ char *pf_utils_strldup(char *src, int wid, int pre, t_format *st)
 	}
 	else
 	{
-		pf_utils_memcpy(dest, src, pre + 1);
+		pf_utils_memcpy(dest, src, pre);
 		pf_utils_memset(dest + pre, pf_utils_width_char(st), wid - pre);
 	}
 	dest[wid] = '\0';
 	return (dest);
 }
-
-char	*pf_utils_strjoin(char *s1, char *s2)
-{
-	char	*dest;
-	size_t	i;
-	size_t	j;
-
-	if (!s1 || !s2)
-		return (NULL);
-	i = pf_utils_strlen(s1);
-	j = pf_utils_strlen(s2);
-	if (!(dest = (char *)malloc(i + j + 1)))
-		return (NULL);
-	pf_utils_strlcpy(dest, s1, i + 1);
-	pf_utils_strlcpy(dest + i, s2, j + 1);
-	free(s2);
-	return (dest);
-}
-
 

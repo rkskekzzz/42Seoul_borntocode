@@ -14,20 +14,21 @@
 
 int pf_type_handler_p(unsigned long long num, t_format *st)
 {
-	int len;
 	char *ret;
+	int len;
 
 	if (st->dot == 1 && num == 0)
 		ret = pf_utils_strdup("");
 	else if (num == 0)
 		ret = pf_utils_strdup("0");
 	else
-		ret = pf_utils_untoa_16_base(num, HEXBASE, 16, st);
-	ret = pf_utils_strjoin("0x", ret);
-	len = pf_utils_strlen(ret);
-	st->zero = 0;
-	ret = pf_utils_strldup(ret, pf_max(st->width, len), len, st);
-//	pf_utils_freesrc(&ret, pf_utils_strldup(ret, pf_max(st->width, len), len, st));
+		ret = pf_utils_itoa(num, HEXBASE, 16, st);
+	len = pf_utils_strlen(ret) + 2;
+	pf_utils_print_rep(' ',!st->minus * st->width - len);
+	pf_utils_putstr("0x", 1);
 	pf_utils_putstr(ret, 1);
-	return (pf_utils_freestr(&ret));
+	pf_utils_print_rep(' ',st->minus * st->width - len);
+	if (st->width >= len)
+		return (st->width);
+	return (len );
 }

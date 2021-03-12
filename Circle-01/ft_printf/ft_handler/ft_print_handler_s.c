@@ -31,8 +31,6 @@ int pf_type_handler_s(char* str, t_format *st)
 		len = pf_min(st->pre, len);
 	len =  pf_max(st->width, len);
 	tmp = pf_utils_strldup(ret, len, pf_min(pf_utils_strlen(ret), st->pre), st);
-	//pf_utils_freesrc(&ret, pf_utils_strldup(ret, len, pf_min(pf_utils_strlen(ret), st->pre), st));
-	pf_utils_putstr(tmp, 1);
 	if(ret != NULL)
 		free(ret);
 	return (pf_utils_freestr(&tmp));

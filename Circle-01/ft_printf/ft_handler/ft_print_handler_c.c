@@ -14,20 +14,8 @@
 
 int pf_type_handler_c(char ch, t_format *st)
 {
-	if (st->width > 1)
-	{
-		if (st->minus == 1)
-		{
-			pf_utils_putchar(ch, 1);
-			pf_utils_print_rep(pf_utils_width_char(st), st->width - 1);
-		}
-		else
-		{
-			pf_utils_print_rep(pf_utils_width_char(st), st->width - 1);
-			pf_utils_putchar(ch, 1);
-		}
-		return (st->width);
-	}
+	pf_utils_print_rep(pf_utils_width_char(st), !st->minus * st->width - 1);
 	pf_utils_putchar(ch, 1);
-	return (1);
+	pf_utils_print_rep(pf_utils_width_char(st), st->minus * st->width - 1);
+	return (pf_max(st->width, 1));
 }

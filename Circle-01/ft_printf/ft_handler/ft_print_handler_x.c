@@ -25,11 +25,10 @@ int pf_type_handler_x(unsigned int num, t_format *st, const char * base, int bs)
 	if (num == 0 && st->dot == 1 && st->pre <= 0)
 		ret = pf_utils_strdup("");
 	else
-		ret = pf_utils_untoa_16_base(num, base, bs, st);
+		ret = pf_utils_itoa(num, base, bs, st);
 	len = pf_utils_strlen(ret);
 	tmp = pf_utils_strldup(ret, pf_max(st->width, len), len, st);
-	pf_utils_putstr(tmp, 1);
-	if(ret != NULL)
+	if (ret)
 		free(ret);
 	return (pf_utils_freestr(&tmp));
 }

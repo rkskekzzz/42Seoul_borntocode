@@ -23,17 +23,15 @@ int pf_type_handler(const char *format, size_t *i, va_list ap, t_format *st)
 	if (format[*i] == 'd' || format[*i] == 'i')
 		return (pf_type_handler_di(va_arg(ap, int), st));
 	if (format[*i] == 'u')
-		return (pf_type_handler_x(va_arg(ap, unsigned long long), st, BASE, 10));
+		return (pf_type_handler_x(va_arg(ap, unsigned int), st, BASE, 10));
 	if (format[*i] == 'x')
-		return (pf_type_handler_x(va_arg(ap, unsigned long long), st, HEXBASE, 16));
+		return (pf_type_handler_x(va_arg(ap, unsigned int), st, HEXBASE, 16));
 	if (format[*i] == 'X')
-		return (pf_type_handler_x(va_arg(ap, unsigned long long), st, HEXBASEL, 16));
+		return (pf_type_handler_x(va_arg(ap, unsigned int), st, HEXBASEL, 16));
 	if (format[*i] == '%')
 		return (pf_type_handler_c('%', st));
 	return (0);
 }
-
-
 
 void pf_format_handler(const char *format, size_t *i, va_list ap, t_format *st)
 {
@@ -74,3 +72,4 @@ int pf_asterisk_pre_handler(int num, t_format *st)
 	}
 	return (num);
 }
+

@@ -15,6 +15,7 @@
 int pf_type_handler_di(int num, t_format *st)
 {
 	char *ret;
+	char *tmp;
 	int len;
 
 	if (num < 0)
@@ -24,11 +25,11 @@ int pf_type_handler_di(int num, t_format *st)
 	if (num == 0 && st->dot == 1 && st->pre <= 0)
 		ret = pf_utils_strdup("");
 	else
-		ret = pf_utils_itoa(num, st);
+		ret = pf_utils_itoa(num, BASE, 10, st);
 	len = pf_utils_strlen(ret);
 	st->zero = 0;
-	ret = pf_utils_strldup(ret, pf_max(st->width, len), len, st);
-	//pf_utils_freesrc(&ret, pf_utils_strldup(ret, pf_max(st->width, len), len, st));
-	pf_utils_putstr(ret, 1);
-	return (pf_utils_freestr(&ret));
+	tmp = pf_utils_strldup(ret, pf_max(st->width, len), len, st);
+	if(ret != NULL)
+		free(ret);
+	return (pf_utils_freestr(&tmp));
 }
