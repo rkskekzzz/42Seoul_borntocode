@@ -37,14 +37,10 @@ void	pf_utils_putchar(char c, int fd)
 	write(fd, &c, 1);
 }
 
-int pf_utils_freestr(char **str)
+int pf_utils_free_len(char **str, int len)
 {
-	int len;
-
 	if (!*str)
-		return (0);
-	len = pf_utils_strlen(*str);
-	write(1, *str, len);
+		return (-1);
 	free(*str);
 	*str = 0;
 	return (len);

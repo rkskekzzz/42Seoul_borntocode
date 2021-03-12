@@ -21,13 +21,13 @@ int pf_type_handler(const char *format, size_t *i, va_list ap, t_format *st)
 	if (format[*i] == 'p')
 		return (pf_type_handler_p(va_arg(ap, unsigned long long), st));
 	if (format[*i] == 'd' || format[*i] == 'i')
-		return (pf_type_handler_di(va_arg(ap, int), st));
+		return (pf_type_handler_num(va_arg(ap, int), st, BASE, 10));
 	if (format[*i] == 'u')
-		return (pf_type_handler_x(va_arg(ap, unsigned int), st, BASE, 10));
+		return (pf_type_handler_num(va_arg(ap, unsigned int), st, BASE, 10));
 	if (format[*i] == 'x')
-		return (pf_type_handler_x(va_arg(ap, unsigned int), st, HEXBASE, 16));
+		return (pf_type_handler_num(va_arg(ap, unsigned int), st, HEXBASE, 16));
 	if (format[*i] == 'X')
-		return (pf_type_handler_x(va_arg(ap, unsigned int), st, HEXBASEL, 16));
+		return (pf_type_handler_num(va_arg(ap, unsigned int), st, HEXBASEL, 16));
 	if (format[*i] == '%')
 		return (pf_type_handler_c('%', st));
 	return (0);

@@ -35,23 +35,3 @@ char	*pf_utils_strdup(const char *src)
 	return ((char *)dest);
 }
 
-char *pf_utils_strldup(char *src, int wid, int pre, t_format *st)
-{
-	char	*dest;
-
-	if (!(dest = (char *)malloc(wid + 1)))
-		return (NULL);
-	if (st->minus != 1)
-	{
-		pf_utils_memset(dest, pf_utils_width_char(st), wid - pre);
-		pf_utils_memcpy(dest + (wid - pre), src, pre);
-	}
-	else
-	{
-		pf_utils_memcpy(dest, src, pre);
-		pf_utils_memset(dest + pre, pf_utils_width_char(st), wid - pre);
-	}
-	dest[wid] = '\0';
-	return (dest);
-}
-

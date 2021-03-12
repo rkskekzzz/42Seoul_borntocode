@@ -40,7 +40,6 @@ char pf_utils_width_char(t_format *st)
 	return (' ');
 }
 
-
 void	*pf_utils_memcpy(void *dest, const void *src, size_t size)
 {
 	size_t	i;

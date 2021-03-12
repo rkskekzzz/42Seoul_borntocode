@@ -28,7 +28,5 @@ int pf_type_handler_p(unsigned long long num, t_format *st)
 	pf_utils_putstr("0x", 1);
 	pf_utils_putstr(ret, 1);
 	pf_utils_print_rep(' ',st->minus * st->width - len);
-	if (st->width >= len)
-		return (st->width);
-	return (len );
+	return (pf_utils_free_len(&ret, pf_max(st->width, len)));
 }

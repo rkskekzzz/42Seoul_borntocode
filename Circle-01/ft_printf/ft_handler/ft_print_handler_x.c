@@ -12,14 +12,13 @@
 
 #include "ft_printf.h"
 
-int pf_type_handler_x(unsigned int num, t_format *st, const char * base, int bs)
+int pf_type_handler_num(long long num, t_format *st, const char * base, int bs)
 {
 	char *ret;
-	char *tmp;
 	int len;
 
-	if (st->dot == 1)
-		st->zero = 0;
+	if (num < 0)
+		st->pre += 1;
 	if (st->zero == 1 && st->dot == 0 && st->minus != 1)
 		st->pre = st->width;
 	if (num == 0 && st->dot == 1 && st->pre <= 0)
@@ -27,8 +26,8 @@ int pf_type_handler_x(unsigned int num, t_format *st, const char * base, int bs)
 	else
 		ret = pf_utils_itoa(num, base, bs, st);
 	len = pf_utils_strlen(ret);
-	tmp = pf_utils_strldup(ret, pf_max(st->width, len), len, st);
-	if (ret)
-		free(ret);
-	return (pf_utils_freestr(&tmp));
+	pf_utils_print_rep(' ', !st->minus * st->width - len);
+	pf_utils_putstr(ret, 1);
+	pf_utils_print_rep(' ', st->minus * st->width - len);
+	return (pf_utils_free_len(&ret, pf_max(st->width, len)));
 }
