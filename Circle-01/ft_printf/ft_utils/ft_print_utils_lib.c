@@ -37,11 +37,13 @@ void	pf_utils_putchar(char c, int fd)
 	write(fd, &c, 1);
 }
 
-int pf_utils_free_len(char **str, int len)
+void	*pf_utils_memcpy(void *dest, const void *src, size_t size)
 {
-	if (!*str)
-		return (-1);
-	free(*str);
-	*str = 0;
-	return (len);
+	size_t	i;
+
+	i = -1;
+	if (dest != src && size)
+		while (++i < size)
+			*((unsigned char *)dest + i) = *((unsigned char *)src + i);
+	return (dest);
 }

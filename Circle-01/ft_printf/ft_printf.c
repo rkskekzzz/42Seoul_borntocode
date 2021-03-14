@@ -38,10 +38,9 @@ int		pf_printf(const char *format, va_list ap)
 		pf_utils_init_struct(&st);
 		if (format[i] == '%')
 		{
-			while (!pf_utils_istype(format[++i]))
+			while (!pf_utils_istype(format[++i], &st))
 				pf_format_handler(format, &i, ap, &st);
-			if (pf_utils_istype(format[i]))
-				print_size += pf_type_handler(format, &i, ap, &st);
+			print_size += pf_type_handler(&i, ap, &st);
 		}
 		else
 		{

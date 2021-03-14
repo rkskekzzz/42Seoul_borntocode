@@ -32,34 +32,35 @@ typedef struct s_format{
 	int width;
 	int dot;
 	int pre;
+	int type;
 }	t_format;
+
 
 int ft_printf(const char* format, ...);
 int	pf_printf(const char *format, va_list ap);
 
 //handler
-int pf_type_handler(const char *format,size_t *i, va_list ap, t_format *st);
+int pf_type_handler(size_t *i, va_list ap, t_format *st);
 void pf_format_handler(const char *format,size_t *i, va_list ap, t_format *st);
-int pf_asterisk_wid_handler(int num, t_format *st);
-int pf_asterisk_pre_handler(int num, t_format *st);
+int pf_asterisk_handler(int num, t_format *st, int i);
 
 int pf_type_handler_c(char ch, t_format *st);
 int pf_type_handler_s(char *str, t_format *st);
-int pf_type_handler_p(unsigned long long num, t_format *st);
 int pf_type_handler_num(long long num, t_format *st, const char * base, int bs);
 
 //utils
 void pf_utils_init_struct(t_format *st);
 void pf_utils_print_rep(char c, int n);
 char pf_utils_width_char(t_format *st);
-void *pf_utils_memcpy(void *dest, const void *src, size_t size);
+int pf_utils_return(char **str, int len, t_format *st);
+
 
 //utils_xtox
 int	pf_utils_atoi(const char *format, size_t *i);
 char* pf_utils_itoa(long long num, const char * base, int bs, t_format *st);
 
 // utils_ isfunc
-int pf_utils_istype(char ch);
+int pf_utils_istype(char ch, t_format *st);
 int	pf_utils_isdigit(char ch);
 
 // utils_cal
@@ -76,6 +77,6 @@ char	*pf_utils_strdup(const char *src);
 void	*pf_utils_memset(void *dest, int value, size_t size);
 void	pf_utils_putstr(char *s, int fd);
 void	pf_utils_putchar(char c, int fd);
-int 	pf_utils_free_len(char **str, int len);
+void 	*pf_utils_memcpy(void *dest, const void *src, size_t size);
 
 #endif

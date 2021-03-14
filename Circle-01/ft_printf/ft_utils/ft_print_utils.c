@@ -31,6 +31,7 @@ void pf_utils_print_rep(char c, int n)
 	tmp[n] = '\0';
 	pf_utils_putstr(tmp, 1);
 	free(tmp);
+	tmp = 0;
 }
 
 char pf_utils_width_char(t_format *st)
@@ -40,13 +41,18 @@ char pf_utils_width_char(t_format *st)
 	return (' ');
 }
 
-void	*pf_utils_memcpy(void *dest, const void *src, size_t size)
+int pf_utils_return(char **str, int len, t_format *st)
 {
-	size_t	i;
-
-	i = -1;
-	if (dest != src && size)
-		while (++i < size)
-			*((unsigned char *)dest + i) = *((unsigned char *)src + i);
-	return (dest);
+	if (!*str)
+		return (-1);
+	if (st->type == 'p')
+		len += 2;
+	pf_utils_print_rep(' ', !st->minus * st->width - len);
+	if (st->type == 'p')
+		pf_utils_putstr("0x", 1);
+	pf_utils_putstr(*str, 1);
+	pf_utils_print_rep(' ', st->minus * st->width - len);
+	free(*str);
+	*str = 0;
+	return (pf_max(st->width, len));
 }

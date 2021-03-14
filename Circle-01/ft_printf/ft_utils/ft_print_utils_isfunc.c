@@ -12,14 +12,20 @@
 
 #include "ft_printf.h"
 
-int pf_utils_istype(char ch)
+int pf_utils_istype(char ch, t_format *st)
 {
-	return (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || \
-			ch == 'i' || ch == 'u' || ch == 'x' || ch == 'X' || \
-			ch == '%');
+	if (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || \
+		ch == 'i' || ch == 'u' || ch == 'x' || ch == 'X' || \
+		ch == '%' || ch == '\0')
+		{
+			st->type = ch;
+			return (1);
+		}
+	return (0);
 }
 
 int	pf_utils_isdigit(char ch)
 {
 	return (ch >= '0' && ch <= '9');
 }
+

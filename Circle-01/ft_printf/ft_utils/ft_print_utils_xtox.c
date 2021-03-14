@@ -49,10 +49,7 @@ char			*pf_utils_itoa(long long num, const char * base, int bs, t_format *st)
 	i = 0;
 	sign = 1;
 	if(num < 0)
-	{
-		sign = 0;
-		ret[0] = '-';
-	}
+		ret[(sign = 0)] = '-';
 	while (++i < len + sign)
 	{
 		ret[len - i] = base[pf_utils_abs(num % bs)];
